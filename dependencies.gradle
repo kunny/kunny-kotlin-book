@@ -1,0 +1,18 @@
+ext {
+    // Build configuration
+    buildToolsVersion = '26.0.1'
+    minSdkVersion = 15
+    compileSdkVersion = 26
+    targetSdkVersion = 26
+
+    // Gradle plugin
+    androidPluginVersion = '3.0.0-beta4'
+
+    // Library
+    archComponentVersion = '1.0.0-alpha9'
+    glideVersion = '4.1.0'
+    gsonVersion = '2.7'
+    okHttpVersion = '3.8.1'
+    retrofitVersion = '2.3.0'
+    supportLibVersion = '26.0.2'
+}
