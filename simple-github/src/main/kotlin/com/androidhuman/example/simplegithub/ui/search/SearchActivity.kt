@@ -140,7 +140,10 @@ class SearchActivity : AppCompatActivity(), SearchAdapter.ItemClickListener {
     }
 
     private fun updateTitle(query: String) {
-        supportActionBar!!.subtitle = query
+        val ab = supportActionBar
+        if (null != ab) {
+            ab.subtitle = query
+        }
     }
 
     private fun hideSoftKeyboard() {
