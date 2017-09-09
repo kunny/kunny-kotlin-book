@@ -119,10 +119,9 @@ class SearchActivity : AppCompatActivity(), SearchAdapter.ItemClickListener {
                     response: Response<RepoSearchResponse>) {
                 hideProgress()
 
-                if (response.isSuccessful && null != response.body()) {
-                    val searchResult = response.body()
-
-                    adapter.setItems(searchResult!!.items)
+                val searchResult = response.body()
+                if (response.isSuccessful && null != searchResult) {
+                    adapter.setItems(searchResult.items)
                     adapter.notifyDataSetChanged()
 
                     if (0 == searchResult.totalCount) {

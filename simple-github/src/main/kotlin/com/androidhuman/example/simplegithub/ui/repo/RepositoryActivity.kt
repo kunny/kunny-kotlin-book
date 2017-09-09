@@ -81,11 +81,10 @@ class RepositoryActivity : AppCompatActivity() {
             override fun onResponse(call: Call<GithubRepo>, response: Response<GithubRepo>) {
                 hideProgress()
 
-                if (response.isSuccessful && null != response.body()) {
-                    val repo = response.body()
-
+                val repo = response.body()
+                if (response.isSuccessful && null != repo) {
                     GlideApp.with(this@RepositoryActivity)
-                            .load(repo!!.owner.avatarUrl)
+                            .load(repo.owner.avatarUrl)
                             .into(ivProfile)
 
                     tvName.text = repo.fullName
