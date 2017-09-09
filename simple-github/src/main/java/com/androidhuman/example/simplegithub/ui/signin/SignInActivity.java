@@ -99,8 +99,8 @@ public class SignInActivity extends AppCompatActivity {
                     Response<GithubAccessToken> response) {
                 hideProgress();
 
-                if (response.isSuccessful() && null != response.body()) {
-                    GithubAccessToken token = response.body();
+                GithubAccessToken token = response.body();
+                if (response.isSuccessful() && null != token) {
                     if (null == token.accessToken) {
                         throw new IllegalStateException("accessToken cannot be null");
                     }
