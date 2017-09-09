@@ -96,9 +96,8 @@ public class RepositoryActivity extends AppCompatActivity {
             public void onResponse(Call<GithubRepo> call, Response<GithubRepo> response) {
                 hideProgress();
 
-                if (response.isSuccessful() && null != response.body()) {
-                    GithubRepo repo = response.body();
-
+                GithubRepo repo = response.body();
+                if (response.isSuccessful() && null != repo) {
                     GlideApp.with(RepositoryActivity.this)
                             .load(repo.owner.avatarUrl)
                             .into(ivProfile);

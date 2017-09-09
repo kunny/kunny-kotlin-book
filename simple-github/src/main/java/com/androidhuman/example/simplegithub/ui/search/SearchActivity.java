@@ -10,6 +10,7 @@ import com.androidhuman.example.simplegithub.ui.repo.RepositoryActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -131,9 +132,8 @@ public class SearchActivity extends AppCompatActivity implements SearchAdapter.I
                     Response<RepoSearchResponse> response) {
                 hideProgress();
 
-                if (response.isSuccessful() && null != response.body()) {
-                    RepoSearchResponse searchResult = response.body();
-
+                RepoSearchResponse searchResult = response.body();
+                if (response.isSuccessful() && null != searchResult) {
                     adapter.setItems(searchResult.items);
                     adapter.notifyDataSetChanged();
 
@@ -154,7 +154,10 @@ public class SearchActivity extends AppCompatActivity implements SearchAdapter.I
     }
 
     private void updateTitle(String query) {
-        getSupportActionBar().setSubtitle(query);
+        ActionBar ab = getSupportActionBar();
+        if (null != ab) {
+            ab.setSubtitle(query);
+        }
     }
 
     private void hideSoftKeyboard() {
