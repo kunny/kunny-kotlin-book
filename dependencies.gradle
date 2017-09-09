@@ -6,11 +6,11 @@ ext {
     targetSdkVersion = 26
 
     // Gradle plugin
-    androidPluginVersion = '3.0.0-beta4'
+    androidPluginVersion = '3.0.0-beta5'
 
     // Library
     archComponentVersion = '1.0.0-alpha9'
-    glideVersion = '4.1.0'
+    glideVersion = '4.1.1'
     gsonVersion = '2.7'
     kotlinVersion = '1.1.4-3'
     okHttpVersion = '3.8.1'
