@@ -12,6 +12,7 @@ ext {
     archComponentVersion = '1.0.0-alpha9'
     glideVersion = '4.1.0'
     gsonVersion = '2.7'
+    kotlinVersion = '1.1.4-3'
     okHttpVersion = '3.8.1'
     retrofitVersion = '2.3.0'
     supportLibVersion = '26.0.2'
