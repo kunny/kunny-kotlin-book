@@ -70,13 +70,13 @@ class RepositoryActivity : AppCompatActivity() {
         val repo = intent.getStringExtra(KEY_REPO_NAME) ?: throw IllegalArgumentException(
                 "No repo info exists in extras")
 
-        repoCall = api.getRepository(login, repo)
-        showRepositoryInfo()
+        showRepositoryInfo(login, repo)
     }
 
-    private fun showRepositoryInfo() {
+    private fun showRepositoryInfo(login: String, repoName: String) {
         showProgress()
 
+        repoCall = api.getRepository(login, repoName)
         repoCall.enqueue(object : Callback<GithubRepo> {
             override fun onResponse(call: Call<GithubRepo>, response: Response<GithubRepo>) {
                 hideProgress(true)
