@@ -84,13 +84,13 @@ public class RepositoryActivity extends AppCompatActivity {
             throw new IllegalArgumentException("No repo info exists in extras");
         }
 
-        repoCall = api.getRepository(login, repo);
-        showRepositoryInfo();
+        showRepositoryInfo(login, repo);
     }
 
-    private void showRepositoryInfo() {
+    private void showRepositoryInfo(String login, String repoName) {
         showProgress();
 
+        repoCall = api.getRepository(login, repoName);
         repoCall.enqueue(new Callback<GithubRepo>() {
             @Override
             public void onResponse(Call<GithubRepo> call, Response<GithubRepo> response) {
