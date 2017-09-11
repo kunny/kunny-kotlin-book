@@ -94,7 +94,7 @@ public class RepositoryActivity extends AppCompatActivity {
         repoCall.enqueue(new Callback<GithubRepo>() {
             @Override
             public void onResponse(Call<GithubRepo> call, Response<GithubRepo> response) {
-                hideProgress();
+                hideProgress(true);
 
                 GithubRepo repo = response.body();
                 if (response.isSuccessful() && null != repo) {
@@ -129,7 +129,7 @@ public class RepositoryActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<GithubRepo> call, Throwable t) {
-                hideProgress();
+                hideProgress(false);
                 showError(t.getMessage());
             }
         });
@@ -140,8 +140,8 @@ public class RepositoryActivity extends AppCompatActivity {
         pbProgress.setVisibility(View.VISIBLE);
     }
 
-    private void hideProgress() {
-        llContent.setVisibility(View.VISIBLE);
+    private void hideProgress(boolean isSucceed) {
+        llContent.setVisibility(isSucceed ? View.VISIBLE : View.GONE);
         pbProgress.setVisibility(View.GONE);
     }
 
