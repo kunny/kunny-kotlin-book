@@ -79,7 +79,7 @@ class RepositoryActivity : AppCompatActivity() {
 
         repoCall.enqueue(object : Callback<GithubRepo> {
             override fun onResponse(call: Call<GithubRepo>, response: Response<GithubRepo>) {
-                hideProgress()
+                hideProgress(true)
 
                 val repo = response.body()
                 if (response.isSuccessful && null != repo) {
@@ -114,7 +114,7 @@ class RepositoryActivity : AppCompatActivity() {
             }
 
             override fun onFailure(call: Call<GithubRepo>, t: Throwable) {
-                hideProgress()
+                hideProgress(false)
                 showError(t.message)
             }
         })
@@ -125,8 +125,8 @@ class RepositoryActivity : AppCompatActivity() {
         pbProgress.visibility = View.VISIBLE
     }
 
-    private fun hideProgress() {
-        llContent.visibility = View.VISIBLE
+    private fun hideProgress(isSucceed: Boolean) {
+        llContent.visibility = if (isSucceed) View.VISIBLE else View.GONE
         pbProgress.visibility = View.GONE
     }
 
