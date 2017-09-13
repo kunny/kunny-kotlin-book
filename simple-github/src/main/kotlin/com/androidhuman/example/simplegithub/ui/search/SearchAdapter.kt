@@ -50,8 +50,8 @@ class SearchAdapter : RecyclerView.Adapter<SearchAdapter.RepositoryHolder>() {
         return items.size
     }
 
-    fun setItems(items: MutableList<GithubRepo>) {
-        this.items = items
+    fun setItems(items: List<GithubRepo>) {
+        this.items = items.toMutableList()
     }
 
     fun setItemClickListener(listener: ItemClickListener?) {
