@@ -78,9 +78,6 @@ class SignInActivity : AppCompatActivity() {
 
                 val token = response.body()
                 if (response.isSuccessful && null != token) {
-                    if (null == token.accessToken) {
-                        throw IllegalStateException("accessToken cannot be null")
-                    }
                     authTokenProvider.updateToken(token.accessToken)
 
                     launchMainActivity()
