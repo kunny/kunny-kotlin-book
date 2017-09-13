@@ -101,9 +101,6 @@ public class SignInActivity extends AppCompatActivity {
 
                 GithubAccessToken token = response.body();
                 if (response.isSuccessful() && null != token) {
-                    if (null == token.accessToken) {
-                        throw new IllegalStateException("accessToken cannot be null");
-                    }
                     authTokenProvider.updateToken(token.accessToken);
 
                     launchMainActivity();
