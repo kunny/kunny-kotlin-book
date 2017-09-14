@@ -50,8 +50,7 @@ class SignInActivity : AppCompatActivity() {
     override fun onNewIntent(intent: Intent) {
         super.onNewIntent(intent)
 
-        btnActivitySignInStart.visibility = View.GONE
-        pbActivitySignIn.visibility = View.VISIBLE
+        showProgress()
 
         val uri = intent.data ?: throw IllegalArgumentException("No data exists")
 
