@@ -62,8 +62,7 @@ class SignInActivity : AppCompatActivity() {
     override fun onNewIntent(intent: Intent) {
         super.onNewIntent(intent)
 
-        btnStart.visibility = View.GONE
-        progress.visibility = View.VISIBLE
+        showProgress()
 
         val uri = intent.data ?: throw IllegalArgumentException("No data exists")
 
