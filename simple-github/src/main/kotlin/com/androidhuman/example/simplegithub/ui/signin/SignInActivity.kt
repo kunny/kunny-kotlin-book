@@ -52,9 +52,7 @@ class SignInActivity : AppCompatActivity() {
 
         showProgress()
 
-        val uri = intent.data ?: throw IllegalArgumentException("No data exists")
-
-        val code = uri.getQueryParameter("code")
+        val code = intent.data?.getQueryParameter("code")
                 ?: throw IllegalStateException("No code exists")
 
         getAccessToken(code)
