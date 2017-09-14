@@ -71,8 +71,7 @@ public class SignInActivity extends AppCompatActivity {
     protected void onNewIntent(Intent intent) {
         super.onNewIntent(intent);
 
-        btnStart.setVisibility(View.GONE);
-        progress.setVisibility(View.VISIBLE);
+        showProgress();
 
         Uri uri = intent.getData();
         if (null == uri) {
