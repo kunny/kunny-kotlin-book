@@ -10,46 +10,38 @@ import com.androidhuman.example.simplegithub.R
 import com.androidhuman.example.simplegithub.api.model.GithubRepo
 import com.androidhuman.example.simplegithub.ui.GlideApp
 import kotlinx.android.synthetic.main.item_repository.view.*
-import java.util.ArrayList
 
 class SearchAdapter : RecyclerView.Adapter<SearchAdapter.RepositoryHolder>() {
 
-    private var items: MutableList<GithubRepo> = ArrayList()
+    private var items: MutableList<GithubRepo> = mutableListOf()
 
     private val placeholder = ColorDrawable(Color.GRAY)
 
     private var listener: ItemClickListener? = null
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RepositoryHolder {
-        return RepositoryHolder(parent)
-    }
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int)
+            = RepositoryHolder(parent)
 
     override fun onBindViewHolder(holder: RepositoryHolder, position: Int) {
-        val repo = items[position]
+        items[position].let { repo ->
+            with(holder.itemView) {
+                GlideApp.with(context)
+                        .load(repo.owner.avatarUrl)
+                        .placeholder(placeholder)
+                        .into(ivItemRepositoryProfile)
 
-        with(holder.itemView) {
-            GlideApp.with(context)
-                    .load(repo.owner.avatarUrl)
-                    .placeholder(placeholder)
-                    .into(ivItemRepositoryProfile)
+                tvItemRepositoryName.text = repo.fullName
+                tvItemRepositoryLanguage.text = if (TextUtils.isEmpty(repo.language))
+                    context.getText(R.string.no_language_specified)
+                else
+                    repo.language
 
-            tvItemRepositoryName.text = repo.fullName
-            tvItemRepositoryLanguage.text = if (TextUtils.isEmpty(repo.language))
-                context.getText(R.string.no_language_specified)
-            else
-                repo.language
-
-            setOnClickListener {
-                if (null != listener) {
-                    listener!!.onItemClick(repo)
-                }
+                setOnClickListener { listener?.onItemClick(repo) }
             }
         }
     }
 
-    override fun getItemCount(): Int {
-        return items.size
-    }
+    override fun getItemCount() = items.size
 
     fun setItems(items: List<GithubRepo>) {
         this.items = items.toMutableList()

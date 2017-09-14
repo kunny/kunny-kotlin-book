@@ -9,9 +9,8 @@ import android.view.View
 import android.widget.Toast
 import com.androidhuman.example.simplegithub.BuildConfig
 import com.androidhuman.example.simplegithub.R
-import com.androidhuman.example.simplegithub.api.AuthApi
-import com.androidhuman.example.simplegithub.api.GithubApiProvider
 import com.androidhuman.example.simplegithub.api.model.GithubAccessToken
+import com.androidhuman.example.simplegithub.api.provideAuthApi
 import com.androidhuman.example.simplegithub.data.AuthTokenProvider
 import com.androidhuman.example.simplegithub.ui.main.MainActivity
 import kotlinx.android.synthetic.main.activity_sign_in.*
@@ -21,11 +20,11 @@ import retrofit2.Response
 
 class SignInActivity : AppCompatActivity() {
 
-    internal lateinit var api: AuthApi
+    internal val api by lazy { provideAuthApi() }
 
-    internal lateinit var authTokenProvider: AuthTokenProvider
+    internal val authTokenProvider by lazy { AuthTokenProvider(this) }
 
-    internal lateinit var accessTokenCall: Call<GithubAccessToken>
+    internal var accessTokenCall: Call<GithubAccessToken>? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -42,9 +41,6 @@ class SignInActivity : AppCompatActivity() {
             val intent = CustomTabsIntent.Builder().build()
             intent.launchUrl(this@SignInActivity, authUri)
         }
-
-        api = GithubApiProvider.provideAuthApi()
-        authTokenProvider = AuthTokenProvider(this)
 
         if (null != authTokenProvider.token) {
             launchMainActivity()
@@ -65,13 +61,18 @@ class SignInActivity : AppCompatActivity() {
         getAccessToken(code)
     }
 
+    override fun onStop() {
+        super.onStop()
+        accessTokenCall?.run { cancel() }
+    }
+
     private fun getAccessToken(code: String) {
         showProgress()
 
         accessTokenCall = api.getAccessToken(
                 BuildConfig.GITHUB_CLIENT_ID, BuildConfig.GITHUB_CLIENT_SECRET, code)
 
-        accessTokenCall.enqueue(object : Callback<GithubAccessToken> {
+        accessTokenCall!!.enqueue(object : Callback<GithubAccessToken> {
             override fun onResponse(call: Call<GithubAccessToken>,
                     response: Response<GithubAccessToken>) {
                 hideProgress()
