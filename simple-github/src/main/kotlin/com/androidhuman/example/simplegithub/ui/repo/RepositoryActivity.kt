@@ -52,7 +52,7 @@ class RepositoryActivity : AppCompatActivity() {
         showProgress()
 
         repoCall = api.getRepository(login, repoName)
-        repoCall?.enqueue(object : Callback<GithubRepo> {
+        repoCall!!.enqueue(object : Callback<GithubRepo> {
             override fun onResponse(call: Call<GithubRepo>, response: Response<GithubRepo>) {
                 hideProgress(true)
 
