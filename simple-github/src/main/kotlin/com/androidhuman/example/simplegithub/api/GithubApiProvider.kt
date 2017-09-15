@@ -53,12 +53,13 @@ private fun provideAuthTokenProvider(context: Context): AuthTokenProvider
 internal class AuthInterceptor(private val token: String) : Interceptor {
 
     @Throws(IOException::class)
-    override fun intercept(chain: Interceptor.Chain): Response {
-        val newRequest = chain.request().newBuilder().run {
+    override fun intercept(chain: Interceptor.Chain)
+            : Response = with(chain) {
+        val newRequest = request().newBuilder().run {
             addHeader("Authorization", "token " + token)
             build()
         }
-        return chain.proceed(newRequest)
+        proceed(newRequest)
     }
 }
 
