@@ -6,7 +6,6 @@ import android.os.Bundle
 import android.support.customtabs.CustomTabsIntent
 import android.support.v7.app.AppCompatActivity
 import android.view.View
-import android.widget.Toast
 import com.androidhuman.example.simplegithub.BuildConfig
 import com.androidhuman.example.simplegithub.R
 import com.androidhuman.example.simplegithub.api.model.GithubAccessToken
@@ -14,6 +13,10 @@ import com.androidhuman.example.simplegithub.api.provideAuthApi
 import com.androidhuman.example.simplegithub.data.AuthTokenProvider
 import com.androidhuman.example.simplegithub.ui.main.MainActivity
 import kotlinx.android.synthetic.main.activity_sign_in.*
+import org.jetbrains.anko.clearTask
+import org.jetbrains.anko.intentFor
+import org.jetbrains.anko.longToast
+import org.jetbrains.anko.newTask
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -103,13 +106,10 @@ class SignInActivity : AppCompatActivity() {
     }
 
     private fun showError(throwable: Throwable) {
-        Toast.makeText(this, throwable.message, Toast.LENGTH_LONG).show()
+        longToast(throwable.message ?: "No message available")
     }
 
     private fun launchMainActivity() {
-        startActivity(Intent(
-                this@SignInActivity, MainActivity::class.java)
-                .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
-                .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK))
+        startActivity(intentFor<MainActivity>().clearTask().newTask())
     }
 }

@@ -1,6 +1,5 @@
 package com.androidhuman.example.simplegithub.ui.search
 
-import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
@@ -18,6 +17,7 @@ import com.androidhuman.example.simplegithub.ui.repo.KEY_REPO_NAME
 import com.androidhuman.example.simplegithub.ui.repo.KEY_USER_LOGIN
 import com.androidhuman.example.simplegithub.ui.repo.RepositoryActivity
 import kotlinx.android.synthetic.main.activity_search.*
+import org.jetbrains.anko.startActivity
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -100,11 +100,9 @@ class SearchActivity : AppCompatActivity(), SearchAdapter.ItemClickListener {
     }
 
     override fun onItemClick(repository: GithubRepo) {
-        val intent = Intent(this, RepositoryActivity::class.java).apply {
-            putExtra(KEY_USER_LOGIN, repository.owner.login)
-            putExtra(KEY_REPO_NAME, repository.name)
-        }
-        startActivity(intent)
+        startActivity<RepositoryActivity>(
+                KEY_USER_LOGIN to repository.owner.login,
+                KEY_REPO_NAME to repository.name)
     }
 
     private fun searchRepository(query: String) {
