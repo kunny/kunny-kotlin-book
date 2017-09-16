@@ -13,5 +13,5 @@ ext {
     gsonVersion = '2.7'
     okHttpVersion = '3.8.1'
     retrofitVersion = '2.3.0'
-    supportLibVersion = '26.0.2'
+    supportLibVersion = '26.1.0'
 }
