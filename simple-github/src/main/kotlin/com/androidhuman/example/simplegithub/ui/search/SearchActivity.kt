@@ -118,8 +118,10 @@ class SearchActivity : AppCompatActivity(), SearchAdapter.ItemClickListener {
 
                 val searchResult = response.body()
                 if (response.isSuccessful && null != searchResult) {
-                    adapter.setItems(searchResult.items)
-                    adapter.notifyDataSetChanged()
+                    with (adapter) {
+                        setItems(searchResult.items)
+                        notifyDataSetChanged()
+                    }
 
                     if (0 == searchResult.totalCount) {
                         showError(getString(R.string.no_search_result))
