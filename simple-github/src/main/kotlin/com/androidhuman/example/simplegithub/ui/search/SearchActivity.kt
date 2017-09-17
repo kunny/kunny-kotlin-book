@@ -16,6 +16,9 @@ import com.androidhuman.example.simplegithub.extensions.plusAssign
 import com.androidhuman.example.simplegithub.ui.repo.KEY_REPO_NAME
 import com.androidhuman.example.simplegithub.ui.repo.KEY_USER_LOGIN
 import com.androidhuman.example.simplegithub.ui.repo.RepositoryActivity
+import com.jakewharton.rxbinding2.support.v7.widget.queryTextChangeEvents
+import com.jakewharton.rxbinding2.view.MenuItemActionViewCollapseEvent
+import com.jakewharton.rxbinding2.view.actionViewEvents
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
@@ -48,40 +51,32 @@ class SearchActivity : AppCompatActivity(), SearchAdapter.ItemClickListener {
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         menuInflater.inflate(R.menu.menu_activity_search, menu)
-        menuSearch = menu.findItem(R.id.menu_activity_search_query)
 
-        searchView = (menuSearch.actionView as SearchView).apply {
-            setOnQueryTextListener(object : SearchView.OnQueryTextListener {
-                override fun onQueryTextSubmit(query: String): Boolean {
+        menuSearch = menu.findItem(R.id.menu_activity_search_query)
+        searchView = (menuSearch.actionView as SearchView)
+
+        disposables += searchView.queryTextChangeEvents()
+                .filter { it.isSubmitted }
+                .map { it.queryText() }
+                .filter { it.isNotEmpty() }
+                .map { it.toString() }
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe { query ->
                     updateTitle(query)
                     hideSoftKeyboard()
                     collapseSearchView()
                     searchRepository(query)
-                    return true
                 }
 
-                override fun onQueryTextChange(newText: String): Boolean {
-                    return false
-                }
-            })
-        }
-
-        with(menuSearch) {
-            setOnActionExpandListener(object : MenuItem.OnActionExpandListener {
-                override fun onMenuItemActionExpand(menuItem: MenuItem): Boolean {
-                    return true
-                }
-
-                override fun onMenuItemActionCollapse(menuItem: MenuItem): Boolean {
-                    if ("" == searchView.query) {
+        disposables += menuSearch.actionViewEvents()
+                .filter { it is MenuItemActionViewCollapseEvent }
+                .subscribe {
+                    if (searchView.query.isEmpty()) {
                         finish()
                     }
-                    return true
                 }
-            })
 
-            expandActionView()
-        }
+        menuSearch.expandActionView()
 
         return true
     }
