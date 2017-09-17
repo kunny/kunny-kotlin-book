@@ -14,6 +14,7 @@ interface GithubApi {
     fun searchRepository(@Query("q") query: String): Call<RepoSearchResponse>
 
     @GET("repos/{owner}/{name}")
-    fun getRepository(@Path("owner") ownerLogin: String, @Path(
-            "name") repoName: String): Call<GithubRepo>
+    fun getRepository(
+            @Path("owner") ownerLogin: String,
+            @Path("name") repoName: String): Call<GithubRepo>
 }
