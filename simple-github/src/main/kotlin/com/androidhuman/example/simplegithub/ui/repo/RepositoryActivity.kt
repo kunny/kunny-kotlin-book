@@ -48,8 +48,6 @@ class RepositoryActivity : AppCompatActivity() {
     }
 
     private fun showRepositoryInfo(login: String, repoName: String) {
-        showProgress()
-
         disposables += api.getRepository(login, repoName)
                 .observeOn(AndroidSchedulers.mainThread())
                 .doOnSubscribe { showProgress() }

@@ -101,10 +101,6 @@ class SearchActivity : AppCompatActivity(), SearchAdapter.ItemClickListener {
     }
 
     private fun searchRepository(query: String) {
-        clearResults()
-        hideError()
-        showProgress()
-
         disposables += api.searchRepository(query)
                 .flatMap {
                     if (0 == it.totalCount) {
