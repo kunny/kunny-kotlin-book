@@ -1,5 +1,8 @@
 package com.androidhuman.example.simplegithub.ui.signin
 
+import android.arch.lifecycle.Lifecycle
+import android.arch.lifecycle.LifecycleObserver
+import android.arch.lifecycle.OnLifecycleEvent
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
@@ -47,6 +50,14 @@ class SignInActivity : AppCompatActivity() {
         if (null != authTokenProvider.token) {
             launchMainActivity()
         }
+
+        lifecycle.addObserver(object : LifecycleObserver {
+
+            @OnLifecycleEvent(Lifecycle.Event.ON_STOP)
+            fun cleanup() {
+                disposables.clear()
+            }
+        })
     }
 
     override fun onNewIntent(intent: Intent) {
@@ -58,11 +69,6 @@ class SignInActivity : AppCompatActivity() {
                 ?: throw IllegalStateException("No code exists")
 
         getAccessToken(code)
-    }
-
-    override fun onStop() {
-        super.onStop()
-        disposables.clear()
     }
 
     private fun getAccessToken(code: String) {

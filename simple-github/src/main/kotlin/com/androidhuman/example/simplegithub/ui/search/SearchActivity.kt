@@ -1,5 +1,8 @@
 package com.androidhuman.example.simplegithub.ui.search
 
+import android.arch.lifecycle.Lifecycle
+import android.arch.lifecycle.LifecycleObserver
+import android.arch.lifecycle.OnLifecycleEvent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
@@ -47,6 +50,14 @@ class SearchActivity : AppCompatActivity(), SearchAdapter.ItemClickListener {
             layoutManager = LinearLayoutManager(this@SearchActivity)
             adapter = this@SearchActivity.adapter
         }
+
+        lifecycle.addObserver(object : LifecycleObserver {
+
+            @OnLifecycleEvent(Lifecycle.Event.ON_STOP)
+            fun cleanup() {
+                disposables.clear()
+            }
+        })
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -88,11 +99,6 @@ class SearchActivity : AppCompatActivity(), SearchAdapter.ItemClickListener {
             return true
         }
         return super.onOptionsItemSelected(item)
-    }
-
-    override fun onStop() {
-        super.onStop()
-        disposables.clear()
     }
 
     override fun onItemClick(repository: GithubRepo) {

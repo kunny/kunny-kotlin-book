@@ -1,5 +1,8 @@
 package com.androidhuman.example.simplegithub.ui.repo
 
+import android.arch.lifecycle.Lifecycle
+import android.arch.lifecycle.LifecycleObserver
+import android.arch.lifecycle.OnLifecycleEvent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.view.View
@@ -40,11 +43,14 @@ class RepositoryActivity : AppCompatActivity() {
                 "No repo info exists in extras")
 
         showRepositoryInfo(login, repo)
-    }
 
-    override fun onStop() {
-        super.onStop()
-        disposables.clear()
+        lifecycle.addObserver(object : LifecycleObserver {
+
+            @OnLifecycleEvent(Lifecycle.Event.ON_STOP)
+            fun cleanup() {
+                disposables.clear()
+            }
+        })
     }
 
     private fun showRepositoryInfo(login: String, repoName: String) {
