@@ -70,6 +70,7 @@ class SearchActivity : AppCompatActivity(), SearchAdapter.ItemClickListener {
 
         disposables += menuSearch.actionViewEvents()
                 .filter { it is MenuItemActionViewCollapseEvent }
+                .observeOn(AndroidSchedulers.mainThread())
                 .subscribe {
                     if (searchView.query.isEmpty()) {
                         finish()
