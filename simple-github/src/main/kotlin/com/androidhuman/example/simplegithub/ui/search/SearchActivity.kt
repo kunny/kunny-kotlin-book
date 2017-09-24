@@ -17,8 +17,6 @@ import com.androidhuman.example.simplegithub.ui.repo.KEY_REPO_NAME
 import com.androidhuman.example.simplegithub.ui.repo.KEY_USER_LOGIN
 import com.androidhuman.example.simplegithub.ui.repo.RepositoryActivity
 import com.jakewharton.rxbinding2.support.v7.widget.queryTextChangeEvents
-import com.jakewharton.rxbinding2.view.MenuItemActionViewCollapseEvent
-import com.jakewharton.rxbinding2.view.actionViewEvents
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
@@ -66,15 +64,6 @@ class SearchActivity : AppCompatActivity(), SearchAdapter.ItemClickListener {
                     hideSoftKeyboard()
                     collapseSearchView()
                     searchRepository(query)
-                }
-
-        disposables += menuSearch.actionViewEvents()
-                .filter { it is MenuItemActionViewCollapseEvent }
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe {
-                    if (searchView.query.isEmpty()) {
-                        finish()
-                    }
                 }
 
         menuSearch.expandActionView()
