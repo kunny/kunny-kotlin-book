@@ -75,19 +75,6 @@ class SearchActivity : AppCompatActivity(), SearchAdapter.ItemClickListener {
             }
         })
 
-        menuSearch.setOnActionExpandListener(object : MenuItem.OnActionExpandListener {
-            override fun onMenuItemActionExpand(menuItem: MenuItem): Boolean {
-                return true
-            }
-
-            override fun onMenuItemActionCollapse(menuItem: MenuItem): Boolean {
-                if ("" == searchView.query) {
-                    finish()
-                }
-                return true
-            }
-        })
-
         menuSearch.expandActionView()
 
         return true
