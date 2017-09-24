@@ -10,7 +10,7 @@ ext {
 
     // Library
     ankoVersion = '0.10.1'
-    archComponentVersion = '1.0.0-alpha9-1'
+    archComponentVersion = '1.0.0-beta1'
     glideVersion = '4.1.1'
     gsonVersion = '2.7'
     kotlinVersion = '1.1.50'
