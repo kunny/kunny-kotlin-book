@@ -66,22 +66,7 @@ class SearchActivity : AppCompatActivity(), SearchAdapter.ItemClickListener {
             })
         }
 
-        with(menuSearch) {
-            setOnActionExpandListener(object : MenuItem.OnActionExpandListener {
-                override fun onMenuItemActionExpand(menuItem: MenuItem): Boolean {
-                    return true
-                }
-
-                override fun onMenuItemActionCollapse(menuItem: MenuItem): Boolean {
-                    if ("" == searchView.query) {
-                        finish()
-                    }
-                    return true
-                }
-            })
-
-            expandActionView()
-        }
+        menuSearch.expandActionView()
 
         return true
     }
@@ -118,7 +103,7 @@ class SearchActivity : AppCompatActivity(), SearchAdapter.ItemClickListener {
 
                 val searchResult = response.body()
                 if (response.isSuccessful && null != searchResult) {
-                    with (adapter) {
+                    with(adapter) {
                         setItems(searchResult.items)
                         notifyDataSetChanged()
                     }
