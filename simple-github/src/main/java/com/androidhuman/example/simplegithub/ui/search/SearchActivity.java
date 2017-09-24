@@ -83,21 +83,6 @@ public class SearchActivity extends AppCompatActivity implements SearchAdapter.I
             }
         });
 
-        menuSearch.setOnActionExpandListener(new MenuItem.OnActionExpandListener() {
-            @Override
-            public boolean onMenuItemActionExpand(MenuItem menuItem) {
-                return true;
-            }
-
-            @Override
-            public boolean onMenuItemActionCollapse(MenuItem menuItem) {
-                if ("".equals(searchView.getQuery())) {
-                    finish();
-                }
-                return true;
-            }
-        });
-
         menuSearch.expandActionView();
 
         return true;
