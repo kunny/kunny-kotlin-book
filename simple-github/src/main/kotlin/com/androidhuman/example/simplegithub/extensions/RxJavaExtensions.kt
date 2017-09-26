@@ -1,8 +1,8 @@
 package com.androidhuman.example.simplegithub.extensions
 
-import io.reactivex.disposables.CompositeDisposable
+import com.androidhuman.example.simplegithub.rx.LifecycleDisposable
 import io.reactivex.disposables.Disposable
 
-operator fun CompositeDisposable.plusAssign(disposable: Disposable) {
+operator fun LifecycleDisposable.plusAssign(disposable: Disposable) {
     this.add(disposable)
 }

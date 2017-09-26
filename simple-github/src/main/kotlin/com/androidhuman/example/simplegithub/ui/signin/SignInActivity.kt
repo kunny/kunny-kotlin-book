@@ -1,8 +1,5 @@
 package com.androidhuman.example.simplegithub.ui.signin
 
-import android.arch.lifecycle.Lifecycle
-import android.arch.lifecycle.LifecycleObserver
-import android.arch.lifecycle.OnLifecycleEvent
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
@@ -14,9 +11,9 @@ import com.androidhuman.example.simplegithub.R
 import com.androidhuman.example.simplegithub.api.provideAuthApi
 import com.androidhuman.example.simplegithub.data.AuthTokenProvider
 import com.androidhuman.example.simplegithub.extensions.plusAssign
+import com.androidhuman.example.simplegithub.rx.LifecycleDisposable
 import com.androidhuman.example.simplegithub.ui.main.MainActivity
 import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.disposables.CompositeDisposable
 import kotlinx.android.synthetic.main.activity_sign_in.*
 import org.jetbrains.anko.clearTask
 import org.jetbrains.anko.intentFor
@@ -29,7 +26,7 @@ class SignInActivity : AppCompatActivity() {
 
     internal val authTokenProvider by lazy { AuthTokenProvider(this) }
 
-    internal val disposables = CompositeDisposable()
+    internal val disposables = LifecycleDisposable(this)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -51,13 +48,7 @@ class SignInActivity : AppCompatActivity() {
             launchMainActivity()
         }
 
-        lifecycle.addObserver(object : LifecycleObserver {
-
-            @OnLifecycleEvent(Lifecycle.Event.ON_STOP)
-            fun cleanup() {
-                disposables.clear()
-            }
-        })
+        lifecycle += disposables
     }
 
     override fun onNewIntent(intent: Intent) {

@@ -1,8 +1,5 @@
 package com.androidhuman.example.simplegithub.ui.search
 
-import android.arch.lifecycle.Lifecycle
-import android.arch.lifecycle.LifecycleObserver
-import android.arch.lifecycle.OnLifecycleEvent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
@@ -16,13 +13,13 @@ import com.androidhuman.example.simplegithub.api.GithubApi
 import com.androidhuman.example.simplegithub.api.model.GithubRepo
 import com.androidhuman.example.simplegithub.api.provideGithubApi
 import com.androidhuman.example.simplegithub.extensions.plusAssign
+import com.androidhuman.example.simplegithub.rx.LifecycleDisposable
 import com.androidhuman.example.simplegithub.ui.repo.KEY_REPO_NAME
 import com.androidhuman.example.simplegithub.ui.repo.KEY_USER_LOGIN
 import com.androidhuman.example.simplegithub.ui.repo.RepositoryActivity
 import com.jakewharton.rxbinding2.support.v7.widget.queryTextChangeEvents
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.disposables.CompositeDisposable
 import kotlinx.android.synthetic.main.activity_search.*
 import org.jetbrains.anko.startActivity
 
@@ -38,7 +35,7 @@ class SearchActivity : AppCompatActivity(), SearchAdapter.ItemClickListener {
 
     internal val api: GithubApi by lazy { provideGithubApi(this) }
 
-    internal val disposables = CompositeDisposable()
+    internal val disposables = LifecycleDisposable(this)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -49,13 +46,7 @@ class SearchActivity : AppCompatActivity(), SearchAdapter.ItemClickListener {
             adapter = this@SearchActivity.adapter
         }
 
-        lifecycle.addObserver(object : LifecycleObserver {
-
-            @OnLifecycleEvent(Lifecycle.Event.ON_STOP)
-            fun cleanup() {
-                disposables.clear()
-            }
-        })
+        lifecycle += disposables
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {

@@ -1,17 +1,14 @@
 package com.androidhuman.example.simplegithub.ui.repo
 
-import android.arch.lifecycle.Lifecycle
-import android.arch.lifecycle.LifecycleObserver
-import android.arch.lifecycle.OnLifecycleEvent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.view.View
 import com.androidhuman.example.simplegithub.R
 import com.androidhuman.example.simplegithub.api.provideGithubApi
 import com.androidhuman.example.simplegithub.extensions.plusAssign
+import com.androidhuman.example.simplegithub.rx.LifecycleDisposable
 import com.androidhuman.example.simplegithub.ui.GlideApp
 import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.disposables.CompositeDisposable
 import kotlinx.android.synthetic.main.activity_repository.*
 import java.text.ParseException
 import java.text.SimpleDateFormat
@@ -25,7 +22,7 @@ class RepositoryActivity : AppCompatActivity() {
 
     internal val api by lazy { provideGithubApi(this) }
 
-    internal val disposables = CompositeDisposable()
+    internal val disposables = LifecycleDisposable(this)
 
     internal val dateFormatInResponse = SimpleDateFormat(
             "yyyy-MM-dd'T'HH:mm:ssX", Locale.getDefault())
@@ -44,13 +41,7 @@ class RepositoryActivity : AppCompatActivity() {
 
         showRepositoryInfo(login, repo)
 
-        lifecycle.addObserver(object : LifecycleObserver {
-
-            @OnLifecycleEvent(Lifecycle.Event.ON_STOP)
-            fun cleanup() {
-                disposables.clear()
-            }
-        })
+        lifecycle += disposables
     }
 
     private fun showRepositoryInfo(login: String, repoName: String) {
