@@ -13,9 +13,8 @@ class LifecycleDisposable(
     : LifecycleObserver {
 
     fun add(disposable: Disposable) {
-        if (lifecycleOwner.lifecycle.currentState.isAtLeast(Lifecycle.State.STARTED)) {
-            compositeDisposable.add(disposable)
-        }
+        check(lifecycleOwner.lifecycle.currentState.isAtLeast(Lifecycle.State.INITIALIZED))
+        compositeDisposable.add(disposable)
     }
 
     @OnLifecycleEvent(Lifecycle.Event.ON_STOP)

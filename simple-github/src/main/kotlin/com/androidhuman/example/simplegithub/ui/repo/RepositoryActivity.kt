@@ -34,14 +34,14 @@ class RepositoryActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_repository)
 
+        lifecycle += disposables
+
         val login = intent.getStringExtra(KEY_USER_LOGIN) ?: throw IllegalArgumentException(
                 "No login info exists in extras")
         val repo = intent.getStringExtra(KEY_REPO_NAME) ?: throw IllegalArgumentException(
                 "No repo info exists in extras")
 
         showRepositoryInfo(login, repo)
-
-        lifecycle += disposables
     }
 
     private fun showRepositoryInfo(login: String, repoName: String) {
