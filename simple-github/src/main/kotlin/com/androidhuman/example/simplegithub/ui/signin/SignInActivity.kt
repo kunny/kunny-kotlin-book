@@ -32,6 +32,8 @@ class SignInActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_sign_in)
 
+        lifecycle += disposables
+
         btnActivitySignInStart.setOnClickListener {
             val authUri = Uri.Builder().scheme("https").authority("github.com")
                     .appendPath("login")
@@ -47,8 +49,6 @@ class SignInActivity : AppCompatActivity() {
         if (null != authTokenProvider.token) {
             launchMainActivity()
         }
-
-        lifecycle += disposables
     }
 
     override fun onNewIntent(intent: Intent) {

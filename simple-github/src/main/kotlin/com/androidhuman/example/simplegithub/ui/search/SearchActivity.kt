@@ -41,12 +41,12 @@ class SearchActivity : AppCompatActivity(), SearchAdapter.ItemClickListener {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_search)
 
+        lifecycle += disposables
+
         with(rvActivitySearchList) {
             layoutManager = LinearLayoutManager(this@SearchActivity)
             adapter = this@SearchActivity.adapter
         }
-
-        lifecycle += disposables
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
