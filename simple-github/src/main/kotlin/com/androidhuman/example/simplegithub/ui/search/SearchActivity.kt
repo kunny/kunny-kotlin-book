@@ -37,6 +37,8 @@ class SearchActivity : AppCompatActivity(), SearchAdapter.ItemClickListener {
 
     internal val disposables = CompositeDisposable()
 
+    internal val viewDisposables = CompositeDisposable()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_search)
@@ -53,7 +55,7 @@ class SearchActivity : AppCompatActivity(), SearchAdapter.ItemClickListener {
         menuSearch = menu.findItem(R.id.menu_activity_search_query)
         searchView = (menuSearch.actionView as SearchView)
 
-        disposables += searchView.queryTextChangeEvents()
+        viewDisposables += searchView.queryTextChangeEvents()
                 .filter { it.isSubmitted }
                 .map { it.queryText() }
                 .filter { it.isNotEmpty() }
@@ -82,6 +84,9 @@ class SearchActivity : AppCompatActivity(), SearchAdapter.ItemClickListener {
     override fun onStop() {
         super.onStop()
         disposables.clear()
+        if (isFinishing) {
+            viewDisposables.clear()
+        }
     }
 
     override fun onItemClick(repository: GithubRepo) {
