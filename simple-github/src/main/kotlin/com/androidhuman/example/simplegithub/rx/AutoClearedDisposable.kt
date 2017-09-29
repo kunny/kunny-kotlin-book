@@ -7,7 +7,7 @@ import android.arch.lifecycle.OnLifecycleEvent
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.disposables.Disposable
 
-class LifecycleDisposable(
+open class AutoClearedDisposable(
         private val lifecycleOwner: LifecycleOwner,
         private val compositeDisposable: CompositeDisposable = CompositeDisposable())
     : LifecycleObserver {
@@ -18,7 +18,7 @@ class LifecycleDisposable(
     }
 
     @OnLifecycleEvent(Lifecycle.Event.ON_STOP)
-    fun cleanUp() {
+    open fun cleanUp() {
         compositeDisposable.clear()
     }
 }

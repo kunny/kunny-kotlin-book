@@ -13,8 +13,8 @@ import com.androidhuman.example.simplegithub.api.GithubApi
 import com.androidhuman.example.simplegithub.api.model.GithubRepo
 import com.androidhuman.example.simplegithub.api.provideGithubApi
 import com.androidhuman.example.simplegithub.extensions.plusAssign
-import com.androidhuman.example.simplegithub.rx.LifecycleDisposable
-import com.androidhuman.example.simplegithub.rx.ViewLifecycleDisposable
+import com.androidhuman.example.simplegithub.rx.AutoClearedDisposable
+import com.androidhuman.example.simplegithub.rx.DelayedAutoClearedDisposable
 import com.androidhuman.example.simplegithub.ui.repo.KEY_REPO_NAME
 import com.androidhuman.example.simplegithub.ui.repo.KEY_USER_LOGIN
 import com.androidhuman.example.simplegithub.ui.repo.RepositoryActivity
@@ -36,9 +36,9 @@ class SearchActivity : AppCompatActivity(), SearchAdapter.ItemClickListener {
 
     internal val api: GithubApi by lazy { provideGithubApi(this) }
 
-    internal val disposables = LifecycleDisposable(this)
+    internal val disposables = AutoClearedDisposable(this)
 
-    internal val viewDisposables = ViewLifecycleDisposable(this)
+    internal val viewDisposables = DelayedAutoClearedDisposable(this)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
