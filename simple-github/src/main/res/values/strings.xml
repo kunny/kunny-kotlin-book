@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">Simple Github</string>
 
+    <string name="clear_all">Clear all</string>
     <string name="description">Description</string>
     <string name="language">Language</string>
     <string name="last_update">Last update</string>

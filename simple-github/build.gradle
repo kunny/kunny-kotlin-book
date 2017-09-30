@@ -35,6 +35,8 @@ android {
 
 dependencies {
     implementation "android.arch.lifecycle:extensions:$archComponentVersion"
+    implementation "android.arch.persistence.room:runtime:$archComponentVersion"
+    implementation "android.arch.persistence.room:rxjava2:$archComponentVersion"
     implementation "com.android.support:appcompat-v7:$supportLibVersion"
     implementation "com.android.support:customtabs:$supportLibVersion"
     implementation "com.android.support:design:$supportLibVersion"
@@ -53,5 +55,6 @@ dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlinVersion"
 
     kapt "android.arch.lifecycle:compiler:$archComponentVersion"
+    kapt "android.arch.persistence.room:compiler:$archComponentVersion"
     kapt "com.github.bumptech.glide:compiler:$glideVersion"
 }
