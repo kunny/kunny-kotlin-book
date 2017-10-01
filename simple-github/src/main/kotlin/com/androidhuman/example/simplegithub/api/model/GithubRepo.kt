@@ -3,12 +3,14 @@ package com.androidhuman.example.simplegithub.api.model
 import android.arch.persistence.room.ColumnInfo
 import android.arch.persistence.room.Embedded
 import android.arch.persistence.room.Entity
+import android.arch.persistence.room.PrimaryKey
 import com.google.gson.annotations.SerializedName
 
-@Entity(primaryKeys = arrayOf("full_name"), tableName = "repositories")
+@Entity(tableName = "repositories")
 class GithubRepo(
         val name: String,
-        @SerializedName("full_name") @ColumnInfo(name = "full_name") val fullName: String,
+        @SerializedName("full_name")
+        @PrimaryKey @ColumnInfo(name = "full_name") val fullName: String,
         @Embedded val owner: GithubOwner,
         val description: String?,
         val language: String?,
