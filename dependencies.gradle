@@ -11,7 +11,7 @@ ext {
     // Library
     glideVersion = '4.1.1'
     gsonVersion = '2.7'
-    kotlinVersion = '1.1.50'
+    kotlinVersion = '1.1.51'
     okHttpVersion = '3.8.1'
     retrofitVersion = '2.3.0'
     supportLibVersion = '26.1.0'
