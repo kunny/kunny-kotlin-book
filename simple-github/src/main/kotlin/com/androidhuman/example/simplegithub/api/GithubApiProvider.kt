@@ -51,7 +51,7 @@ private fun provideAuthInterceptor(provider: AuthTokenProvider): AuthInterceptor
 }
 
 private fun provideAuthTokenProvider(context: Context): AuthTokenProvider
-        = AuthTokenProvider(context)
+        = AuthTokenProvider(context.applicationContext)
 
 internal class AuthInterceptor(private val token: String) : Interceptor {
 
