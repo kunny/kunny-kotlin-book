@@ -63,7 +63,7 @@ public final class GithubApiProvider {
     }
 
     private static AuthTokenProvider provideAuthTokenProvider(@NonNull Context context) {
-        return new AuthTokenProvider(context);
+        return new AuthTokenProvider(context.getApplicationContext());
     }
 
     static class AuthInterceptor implements Interceptor {
