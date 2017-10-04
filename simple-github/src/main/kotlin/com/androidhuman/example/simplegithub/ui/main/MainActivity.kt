@@ -1,8 +1,5 @@
 package com.androidhuman.example.simplegithub.ui.main
 
-import android.arch.lifecycle.Lifecycle
-import android.arch.lifecycle.LifecycleObserver
-import android.arch.lifecycle.OnLifecycleEvent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
@@ -14,6 +11,7 @@ import com.androidhuman.example.simplegithub.api.model.GithubRepo
 import com.androidhuman.example.simplegithub.data.provideSearchHistoryDao
 import com.androidhuman.example.simplegithub.extensions.plusAssign
 import com.androidhuman.example.simplegithub.extensions.runOnIoScheduler
+import com.androidhuman.example.simplegithub.rx.AutoActivatedDisposable
 import com.androidhuman.example.simplegithub.rx.AutoClearedDisposable
 import com.androidhuman.example.simplegithub.ui.repo.KEY_REPO_NAME
 import com.androidhuman.example.simplegithub.ui.repo.KEY_USER_LOGIN
@@ -40,12 +38,24 @@ class MainActivity : AppCompatActivity(), SearchAdapter.ItemClickListener {
         setContentView(R.layout.activity_main)
 
         lifecycle += disposables
-        lifecycle += object : LifecycleObserver {
+        lifecycle += AutoActivatedDisposable(this) {
+            searchHistoryDao.getHistory()
+                    .subscribeOn(Schedulers.io())
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribe({ items ->
+                        with(adapter) {
+                            setItems(items)
+                            notifyDataSetChanged()
+                        }
 
-            @OnLifecycleEvent(Lifecycle.Event.ON_START)
-            fun fetch() {
-                fetchSearchHistory()
-            }
+                        if (items.isEmpty()) {
+                            showMessage(getString(R.string.no_recent_repositories))
+                        } else {
+                            hideMessage()
+                        }
+                    }) {
+                        showMessage(it.message)
+                    }
         }
 
         btnActivityMainSearch.setOnClickListener {
@@ -75,26 +85,6 @@ class MainActivity : AppCompatActivity(), SearchAdapter.ItemClickListener {
         startActivity<RepositoryActivity>(
                 KEY_USER_LOGIN to repository.owner.login,
                 KEY_REPO_NAME to repository.name)
-    }
-
-    private fun fetchSearchHistory() {
-        disposables += searchHistoryDao.getHistory()
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe({ items ->
-                    with(adapter) {
-                        setItems(items)
-                        notifyDataSetChanged()
-                    }
-
-                    if (items.isEmpty()) {
-                        showMessage(getString(R.string.no_recent_repositories))
-                    } else {
-                        hideMessage()
-                    }
-                }) {
-                    showMessage(it.message)
-                }
     }
 
     private fun clearAll() {
