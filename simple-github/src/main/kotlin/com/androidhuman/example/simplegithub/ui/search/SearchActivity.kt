@@ -12,9 +12,7 @@ import com.androidhuman.example.simplegithub.R
 import com.androidhuman.example.simplegithub.api.GithubApi
 import com.androidhuman.example.simplegithub.api.model.GithubRepo
 import com.androidhuman.example.simplegithub.api.provideGithubApi
-import com.androidhuman.example.simplegithub.data.provideSearchHistoryDao
 import com.androidhuman.example.simplegithub.extensions.plusAssign
-import com.androidhuman.example.simplegithub.extensions.runOnIoScheduler
 import com.androidhuman.example.simplegithub.rx.AutoClearedDisposable
 import com.androidhuman.example.simplegithub.ui.repo.KEY_REPO_NAME
 import com.androidhuman.example.simplegithub.ui.repo.KEY_USER_LOGIN
@@ -36,8 +34,6 @@ class SearchActivity : AppCompatActivity(), SearchAdapter.ItemClickListener {
     }
 
     internal val api: GithubApi by lazy { provideGithubApi(this) }
-
-    internal val searchHistoryDao by lazy { provideSearchHistoryDao(this) }
 
     internal val disposables = AutoClearedDisposable(this)
 
@@ -90,7 +86,6 @@ class SearchActivity : AppCompatActivity(), SearchAdapter.ItemClickListener {
     }
 
     override fun onItemClick(repository: GithubRepo) {
-        disposables += runOnIoScheduler { searchHistoryDao.add(repository) }
         startActivity<RepositoryActivity>(
                 KEY_USER_LOGIN to repository.owner.login,
                 KEY_REPO_NAME to repository.name)
