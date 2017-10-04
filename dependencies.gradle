@@ -1,12 +1,12 @@
 ext {
     // Build configuration
-    buildToolsVersion = '26.0.1'
+    buildToolsVersion = '26.0.2'
     minSdkVersion = 15
     compileSdkVersion = 26
     targetSdkVersion = 26
 
     // Gradle plugin
-    androidPluginVersion = '3.0.0-beta6'
+    androidPluginVersion = '3.0.0-beta7'
 
     // Library
     ankoVersion = '0.10.1'
