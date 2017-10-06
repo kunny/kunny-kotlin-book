@@ -7,7 +7,7 @@ import android.support.v7.app.AppCompatActivity
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.disposables.Disposable
 
-open class AutoClearedDisposable(
+class AutoClearedDisposable(
         private val lifecycleOwner: AppCompatActivity,
         private val alwaysClearOnStop: Boolean = true,
         private val compositeDisposable: CompositeDisposable = CompositeDisposable())
@@ -19,7 +19,7 @@ open class AutoClearedDisposable(
     }
 
     @OnLifecycleEvent(Lifecycle.Event.ON_STOP)
-    open fun cleanUp() {
+    fun cleanUp() {
         if (!alwaysClearOnStop && !lifecycleOwner.isFinishing) {
             return
         }
@@ -27,7 +27,7 @@ open class AutoClearedDisposable(
     }
 
     @OnLifecycleEvent(Lifecycle.Event.ON_DESTROY)
-    open fun detachSelf() {
+    fun detachSelf() {
         compositeDisposable.clear()
         lifecycleOwner.lifecycle.removeObserver(this)
     }
