@@ -19,6 +19,7 @@ import com.androidhuman.example.simplegithub.ui.repo.RepositoryActivity
 import com.androidhuman.example.simplegithub.ui.search.SearchActivity
 import com.androidhuman.example.simplegithub.ui.search.SearchAdapter
 import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.activity_main.*
 import org.jetbrains.anko.startActivity
@@ -38,25 +39,7 @@ class MainActivity : AppCompatActivity(), SearchAdapter.ItemClickListener {
         setContentView(R.layout.activity_main)
 
         lifecycle += disposables
-        lifecycle += AutoActivatedDisposable(this) {
-            searchHistoryDao.getHistory()
-                    .subscribeOn(Schedulers.io())
-                    .observeOn(AndroidSchedulers.mainThread())
-                    .subscribe({ items ->
-                        with(adapter) {
-                            setItems(items)
-                            notifyDataSetChanged()
-                        }
-
-                        if (items.isEmpty()) {
-                            showMessage(getString(R.string.no_recent_repositories))
-                        } else {
-                            hideMessage()
-                        }
-                    }) {
-                        showMessage(it.message)
-                    }
-        }
+        lifecycle += AutoActivatedDisposable(this) { fetchSearchHistory() }
 
         btnActivityMainSearch.setOnClickListener {
             startActivity<SearchActivity>()
@@ -86,6 +69,25 @@ class MainActivity : AppCompatActivity(), SearchAdapter.ItemClickListener {
                 KEY_USER_LOGIN to repository.owner.login,
                 KEY_REPO_NAME to repository.name)
     }
+
+    private fun fetchSearchHistory(): Disposable
+            = searchHistoryDao.getHistory()
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe({ items ->
+                with(adapter) {
+                    setItems(items)
+                    notifyDataSetChanged()
+                }
+
+                if (items.isEmpty()) {
+                    showMessage(getString(R.string.no_recent_repositories))
+                } else {
+                    hideMessage()
+                }
+            }) {
+                showMessage(it.message)
+            }
 
     private fun clearAll() {
         disposables += runOnIoScheduler { searchHistoryDao.clearAll() }
