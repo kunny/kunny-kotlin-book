@@ -21,6 +21,8 @@ class SearchViewModel(
     val searchResult: BehaviorSubject<SupportOptional<List<GithubRepo>>>
             = BehaviorSubject.createDefault(emptyOptional())
 
+    var lastSearchKeyword: String? = null
+
     val message: BehaviorSubject<SupportOptional<String>> = BehaviorSubject.create()
 
     val isLoading: BehaviorSubject<Boolean>
@@ -28,6 +30,7 @@ class SearchViewModel(
 
     fun searchRepository(query: String): Disposable
             = api.searchRepository(query)
+            .doOnNext{ lastSearchKeyword = query }
             .flatMap {
                 if (0 == it.totalCount) {
                     Observable.error(IllegalStateException("No search result"))

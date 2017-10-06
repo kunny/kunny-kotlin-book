@@ -114,6 +114,11 @@ class SearchActivity : AppCompatActivity(), SearchAdapter.ItemClickListener {
                     searchRepository(query)
                 }
 
+        viewModel.lastSearchKeyword?.let {
+            updateTitle(it)
+            return true
+        }
+
         menuSearch.expandActionView()
 
         return true
