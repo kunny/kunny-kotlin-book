@@ -26,6 +26,7 @@ class MainViewModel(val searchHistoryDao: SearchHistoryDao) : ViewModel() {
                 .doOnError {
                     message.onNext(optionalOf(it.message ?: "Unexpected error"))
                 }
+                .onErrorReturn { emptyOptional() }
 
     val message: BehaviorSubject<SupportOptional<String>> = BehaviorSubject.create()
 
