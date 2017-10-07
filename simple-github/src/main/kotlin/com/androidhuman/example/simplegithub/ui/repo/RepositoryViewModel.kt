@@ -30,7 +30,7 @@ class RepositoryViewModel(val api: GithubApi) : ViewModel() {
 
         return repoObservable
                 .doOnSubscribe { isLoading.onNext(true) }
-                .doOnComplete { isLoading.onNext(false) }
+                .doOnTerminate { isLoading.onNext(false) }
                 .subscribeOn(Schedulers.io())
                 .subscribe({ repo ->
                     repository.onNext(optionalOf(repo))

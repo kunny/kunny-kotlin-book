@@ -114,12 +114,15 @@ class SearchActivity : AppCompatActivity(), SearchAdapter.ItemClickListener {
                     searchRepository(query)
                 }
 
-        viewModel.lastSearchKeyword?.let {
-            updateTitle(it)
-            return true
-        }
-
-        menuSearch.expandActionView()
+        viewDisposables += viewModel.lastSearchKeyword
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe { keyword ->
+                    if (keyword.isEmpty) {
+                        menuSearch.expandActionView()
+                    } else {
+                        updateTitle(keyword.value)
+                    }
+                }
 
         return true
     }

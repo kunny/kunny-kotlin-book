@@ -62,9 +62,8 @@ class SignInActivity : AppCompatActivity() {
                 .subscribe { launchMainActivity() }
 
         viewDisposables += viewModel.message
-                .filter { !it.isEmpty }
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe { message -> showError(message.value) }
+                .subscribe { message -> showError(message) }
 
         viewDisposables += viewModel.isLoading
                 .observeOn(AndroidSchedulers.mainThread())

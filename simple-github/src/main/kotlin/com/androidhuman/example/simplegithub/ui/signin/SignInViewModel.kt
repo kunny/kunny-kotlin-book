@@ -10,6 +10,7 @@ import io.reactivex.disposables.Disposable
 import io.reactivex.functions.Consumer
 import io.reactivex.schedulers.Schedulers
 import io.reactivex.subjects.BehaviorSubject
+import io.reactivex.subjects.PublishSubject
 
 class SignInViewModel(
         val api: AuthApi,
@@ -18,7 +19,7 @@ class SignInViewModel(
 
     val accessToken: BehaviorSubject<SupportOptional<String>> = BehaviorSubject.create()
 
-    val message: BehaviorSubject<SupportOptional<String>> = BehaviorSubject.create()
+    val message: PublishSubject<String> = PublishSubject.create()
 
     val isLoading: BehaviorSubject<Boolean>
             = BehaviorSubject.createDefault(false)
@@ -39,6 +40,6 @@ class SignInViewModel(
                 authTokenProvider.updateToken(token)
                 accessToken.onNext(optionalOf(token))
             }) {
-                message.onNext(optionalOf(it.message ?: "Unexpected error"))
+                message.onNext(it.message ?: "Unexpected error")
             }
 }

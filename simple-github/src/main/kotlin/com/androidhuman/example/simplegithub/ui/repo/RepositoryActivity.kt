@@ -103,7 +103,6 @@ class RepositoryActivity : AppCompatActivity() {
                 "No repo info exists in extras")
 
         disposables += viewModel.requestRepositoryInfo(login, repo)
-
     }
 
     private fun showProgress() {
