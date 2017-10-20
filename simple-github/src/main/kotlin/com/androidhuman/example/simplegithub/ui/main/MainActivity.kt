@@ -41,8 +41,7 @@ class MainActivity : AppCompatActivity(), SearchAdapter.ItemClickListener {
 
     lateinit var viewModel: MainViewModel
 
-    lateinit @Inject
-    var searchHistoryDao: SearchHistoryDao
+    lateinit @Inject var searchHistoryDao: SearchHistoryDao
 
     override fun onCreate(savedInstanceState: Bundle?) {
         AndroidInjection.inject(this)
