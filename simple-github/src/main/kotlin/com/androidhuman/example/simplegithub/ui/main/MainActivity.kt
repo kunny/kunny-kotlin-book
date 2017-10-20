@@ -1,6 +1,5 @@
 package com.androidhuman.example.simplegithub.ui.main
 
-import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
@@ -27,30 +26,22 @@ import javax.inject.Inject
 
 class MainActivity : AppCompatActivity(), SearchAdapter.ItemClickListener {
 
-    internal val adapter by lazy {
-        SearchAdapter().apply { setItemClickListener(this@MainActivity) }
-    }
-
     internal val disposables = AutoClearedDisposable(this)
 
     internal val viewDisposables
             = AutoClearedDisposable(lifecycleOwner = this, alwaysClearOnStop = false)
 
-    internal val viewModelFactory
-            by lazy { MainViewModelFactory(searchHistoryDao) }
+    lateinit @Inject var adapter: SearchAdapter
 
-    lateinit var viewModel: MainViewModel
+    lateinit @Inject var viewModel: MainViewModel
 
     lateinit @Inject var searchHistoryDao: SearchHistoryDao
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        AndroidInjection.inject(this)
-
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
 
-        viewModel = ViewModelProviders.of(
-                this, viewModelFactory)[MainViewModel::class.java]
+        AndroidInjection.inject(this)
+        setContentView(R.layout.activity_main)
 
         lifecycle += disposables
         lifecycle += viewDisposables

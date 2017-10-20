@@ -1,6 +1,5 @@
 package com.androidhuman.example.simplegithub.ui.search
 
-import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
@@ -10,9 +9,7 @@ import android.view.MenuItem
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 import com.androidhuman.example.simplegithub.R
-import com.androidhuman.example.simplegithub.api.GithubApi
 import com.androidhuman.example.simplegithub.api.model.GithubRepo
-import com.androidhuman.example.simplegithub.data.SearchHistoryDao
 import com.androidhuman.example.simplegithub.extensions.plusAssign
 import com.androidhuman.example.simplegithub.rx.AutoClearedDisposable
 import com.androidhuman.example.simplegithub.ui.repo.KEY_REPO_NAME
@@ -31,33 +28,20 @@ class SearchActivity : AppCompatActivity(), SearchAdapter.ItemClickListener {
 
     internal lateinit var searchView: SearchView
 
-    internal val adapter by lazy {
-        SearchAdapter().apply { setItemClickListener(this@SearchActivity) }
-    }
-
     internal val disposables = AutoClearedDisposable(this)
 
     internal val viewDisposables
             = AutoClearedDisposable(lifecycleOwner = this, alwaysClearOnStop = false)
 
-    internal val viewModelFactory by lazy {
-        SearchViewModelFactory(githubApi, searchHistoryDao)
-    }
+    lateinit @Inject var adapter: SearchAdapter
 
-    lateinit var viewModel: SearchViewModel
-
-    lateinit @Inject var githubApi: GithubApi
-
-    lateinit @Inject var searchHistoryDao: SearchHistoryDao
+    lateinit @Inject var viewModel: SearchViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        AndroidInjection.inject(this)
-
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_search)
 
-        viewModel = ViewModelProviders.of(
-                this, viewModelFactory)[SearchViewModel::class.java]
+        AndroidInjection.inject(this)
+        setContentView(R.layout.activity_search)
 
         lifecycle += disposables
         lifecycle += viewDisposables

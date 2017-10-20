@@ -1,6 +1,5 @@
 package com.androidhuman.example.simplegithub.ui.signin
 
-import android.arch.lifecycle.ViewModelProviders
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
@@ -9,8 +8,6 @@ import android.support.v7.app.AppCompatActivity
 import android.view.View
 import com.androidhuman.example.simplegithub.BuildConfig
 import com.androidhuman.example.simplegithub.R
-import com.androidhuman.example.simplegithub.api.AuthApi
-import com.androidhuman.example.simplegithub.data.AuthTokenProvider
 import com.androidhuman.example.simplegithub.extensions.plusAssign
 import com.androidhuman.example.simplegithub.rx.AutoClearedDisposable
 import com.androidhuman.example.simplegithub.ui.main.MainActivity
@@ -30,24 +27,13 @@ class SignInActivity : AppCompatActivity() {
     val viewDisposables: AutoClearedDisposable
             = AutoClearedDisposable(lifecycleOwner = this, alwaysClearOnStop = false)
 
-    internal val viewModelFactory by lazy {
-        SignInViewModelFactory(authApi, authTokenProvider)
-    }
-
-    lateinit var viewModel: SignInViewModel
-
-    lateinit @Inject var authApi: AuthApi
-
-    lateinit @Inject var authTokenProvider: AuthTokenProvider
+    lateinit @Inject var viewModel: SignInViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        AndroidInjection.inject(this)
-
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_sign_in)
 
-        viewModel = ViewModelProviders.of(
-                this, viewModelFactory)[SignInViewModel::class.java]
+        AndroidInjection.inject(this)
+        setContentView(R.layout.activity_sign_in)
 
         lifecycle += disposables
         lifecycle += viewDisposables

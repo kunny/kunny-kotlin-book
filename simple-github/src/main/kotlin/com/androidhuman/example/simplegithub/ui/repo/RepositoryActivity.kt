@@ -1,11 +1,9 @@
 package com.androidhuman.example.simplegithub.ui.repo
 
-import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.view.View
 import com.androidhuman.example.simplegithub.R
-import com.androidhuman.example.simplegithub.api.GithubApi
 import com.androidhuman.example.simplegithub.extensions.plusAssign
 import com.androidhuman.example.simplegithub.rx.AutoClearedDisposable
 import com.androidhuman.example.simplegithub.ui.GlideApp
@@ -28,13 +26,7 @@ class RepositoryActivity : AppCompatActivity() {
     internal val viewDisposables
             = AutoClearedDisposable(lifecycleOwner = this, alwaysClearOnStop = false)
 
-    internal val viewModelFactory by lazy {
-        RepositoryViewModelFactory(githubApi)
-    }
-
-    lateinit var viewModel: RepositoryViewModel
-
-    lateinit @Inject var githubApi: GithubApi
+    lateinit @Inject var viewModel: RepositoryViewModel
 
     internal val dateFormatInResponse = SimpleDateFormat(
             "yyyy-MM-dd'T'HH:mm:ssX", Locale.getDefault())
@@ -43,13 +35,10 @@ class RepositoryActivity : AppCompatActivity() {
             "yyyy-MM-dd HH:mm:ss", Locale.getDefault())
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        AndroidInjection.inject(this)
-
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_repository)
 
-        viewModel = ViewModelProviders.of(
-                this, viewModelFactory)[RepositoryViewModel::class.java]
+        AndroidInjection.inject(this)
+        setContentView(R.layout.activity_repository)
 
         lifecycle += disposables
         lifecycle += viewDisposables
