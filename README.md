@@ -12,7 +12,7 @@
 | 브랜치 | 언어 |  장 | 제목 | 책에서 다루는 내용 |
 | --- | -- | --- | --- | --- |
 | [java](https://github.com/kunny/kunny-kotlin-book/tree/java) | Java | 10 | Simple Github 프로젝트 소개 | 자바로 작성한 Simple Github 예제 프로젝트 설명 |
-| [kotlin-step-1](https://github.com/kunny/kunny-kotlin-book/tree/kotlin-step-1) | Java + Kotlin | 11 | 코틀린 변환 1단계: 코틀린 환경 설정 및 UI 코드를 코틀린으로 변환하기 | Simple Github 예제 프로젝트에 코틀린 개발환경 설정, 컨버터를 사용하여 UI 코드를 코틀린으로 변환하는 절차 |
+| [kotlin-step-1](https://github.com/kunny/kunny-kotlin-book/tree/kotlin-step-1) | Java + Kotlin | 11 | 코틀린 변환 1단계: 컨버터로 자바 코드 변환하기 | Simple Github 예제 프로젝트에 코틀린 개발환경 설정, 컨버터를 사용하여 UI 코드를 코틀린으로 변환하는 절차 |
 | [kotlin-step-2](https://github.com/kunny/kunny-kotlin-book/tree/kotlin-step-2) | Kotlin | 12 | 코틀린 변환 2단계: 코틀린 다운 코드로 다듬기 | 11장에서 작업했던 코드에서 남은 자바 코드를 컨버터를 사용하여 코틀린으로 변환 후, 변환된 코드를 코틀린 답게 다듬는 방법 |
 | [rxjava](https://github.com/kunny/kunny-kotlin-book/tree/rxjava) | Kotlin | 13 | 프로젝트 개선 1단계: RxJava 적용하기 | [RxJava](https://github.com/ReactiveX/RxJava)를 사용하여 이벤트를 기반으로 애플리케이션 동작을 처리하는 방법 |
 | [rxjava-rxbinding](https://github.com/kunny/kunny-kotlin-book/tree/rxjava-rxbinding) | Kotlin | 13 | 프로젝트 개선 1단계: RxJava 적용하기 | [RxBinding](https://github.com/JakeWharton/RxBinding)으로 UI 이벤트를 RxJava로 처리하는 방법 |
@@ -28,11 +28,11 @@
 
 | 항목 | 버전 |
 | --- | --- |
-| Android Gradle Plugin | `3.0.0-rc2` |
-| Build Tools | `26.0.2` |
+| Android Gradle Plugin | `3.0.0` |
+| Build Tools | `27.0.0` |
 | Minimum SDK | `15` |
-| Compile SDK | `26` |
-| Target SDK | `26` |
+| Compile SDK | `27` |
+| Target SDK | `27` |
 
 ## 사용하는 라이브러리 및 버전
 
@@ -51,7 +51,7 @@
 | [RxAndroid](https://github.com/ReactiveX/RxAndroid) | [Apache License 2.0](https://github.com/ReactiveX/RxAndroid/blob/2.x/LICENSE) |  `2.0.1` |
 | [RxBinding](https://github.com/JakeWharton/RxBinding) | [Apache License 2.0](https://github.com/JakeWharton/RxBinding/blob/master/LICENSE.txt) | `2.0.0` |
 | [RxJava](https://github.com/ReactiveX/RxJava) | [Apache License 2.0](https://github.com/ReactiveX/RxJava/blob/2.x/LICENSE) | `2.1.3` |
-| [Android Support Library](https://developer.android.com/topic/libraries/support-library/index.html) | Apache License 2.0  | `26.1.0` |
+| [Android Support Library](https://developer.android.com/topic/libraries/support-library/index.html) | Apache License 2.0  | `27.0.0` |
 
 ## 라이선스
 
