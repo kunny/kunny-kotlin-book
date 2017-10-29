@@ -8,7 +8,6 @@ import android.view.MenuItem
 import android.view.View
 import com.androidhuman.example.simplegithub.R
 import com.androidhuman.example.simplegithub.api.model.GithubRepo
-import com.androidhuman.example.simplegithub.data.SearchHistoryDao
 import com.androidhuman.example.simplegithub.extensions.plusAssign
 import com.androidhuman.example.simplegithub.rx.AutoActivatedDisposable
 import com.androidhuman.example.simplegithub.rx.AutoClearedDisposable
@@ -34,8 +33,6 @@ class MainActivity : AppCompatActivity(), SearchAdapter.ItemClickListener {
     lateinit @Inject var adapter: SearchAdapter
 
     lateinit @Inject var viewModel: MainViewModel
-
-    lateinit @Inject var searchHistoryDao: SearchHistoryDao
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
