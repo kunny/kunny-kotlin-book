@@ -33,9 +33,9 @@ class SearchActivity : AppCompatActivity(), SearchAdapter.ItemClickListener {
     internal val viewDisposables
             = AutoClearedDisposable(lifecycleOwner = this, alwaysClearOnStop = false)
 
-    lateinit @Inject var adapter: SearchAdapter
+    @Inject lateinit var adapter: SearchAdapter
 
-    lateinit @Inject var viewModel: SearchViewModel
+    @Inject lateinit var viewModel: SearchViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

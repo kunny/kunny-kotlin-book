@@ -26,7 +26,7 @@ class RepositoryActivity : AppCompatActivity() {
     internal val viewDisposables
             = AutoClearedDisposable(lifecycleOwner = this, alwaysClearOnStop = false)
 
-    lateinit @Inject var viewModel: RepositoryViewModel
+    @Inject lateinit var viewModel: RepositoryViewModel
 
     internal val dateFormatInResponse = SimpleDateFormat(
             "yyyy-MM-dd'T'HH:mm:ssX", Locale.getDefault())

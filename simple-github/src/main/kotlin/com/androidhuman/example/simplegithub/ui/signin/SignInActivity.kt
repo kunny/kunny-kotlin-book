@@ -22,12 +22,12 @@ import javax.inject.Inject
 
 class SignInActivity : AppCompatActivity() {
 
-    val disposables: AutoClearedDisposable = AutoClearedDisposable(this)
+    internal val disposables: AutoClearedDisposable = AutoClearedDisposable(this)
 
-    val viewDisposables: AutoClearedDisposable
+    internal val viewDisposables: AutoClearedDisposable
             = AutoClearedDisposable(lifecycleOwner = this, alwaysClearOnStop = false)
 
-    lateinit @Inject var viewModel: SignInViewModel
+    @Inject lateinit var viewModel: SignInViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
