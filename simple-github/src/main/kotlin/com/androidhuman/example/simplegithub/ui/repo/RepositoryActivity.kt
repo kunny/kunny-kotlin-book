@@ -34,7 +34,7 @@ class RepositoryActivity : AppCompatActivity() {
 
     lateinit var viewModel: RepositoryViewModel
 
-    lateinit @Inject var githubApi: GithubApi
+    @Inject lateinit var githubApi: GithubApi
 
     internal val dateFormatInResponse = SimpleDateFormat(
             "yyyy-MM-dd'T'HH:mm:ssX", Locale.getDefault())

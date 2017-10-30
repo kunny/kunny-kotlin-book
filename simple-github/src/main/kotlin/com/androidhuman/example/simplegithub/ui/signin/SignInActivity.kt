@@ -25,9 +25,9 @@ import javax.inject.Inject
 
 class SignInActivity : AppCompatActivity() {
 
-    val disposables: AutoClearedDisposable = AutoClearedDisposable(this)
+    internal val disposables: AutoClearedDisposable = AutoClearedDisposable(this)
 
-    val viewDisposables: AutoClearedDisposable
+    internal val viewDisposables: AutoClearedDisposable
             = AutoClearedDisposable(lifecycleOwner = this, alwaysClearOnStop = false)
 
     internal val viewModelFactory by lazy {
@@ -36,9 +36,9 @@ class SignInActivity : AppCompatActivity() {
 
     lateinit var viewModel: SignInViewModel
 
-    lateinit @Inject var authApi: AuthApi
+    @Inject lateinit var authApi: AuthApi
 
-    lateinit @Inject var authTokenProvider: AuthTokenProvider
+    @Inject lateinit var authTokenProvider: AuthTokenProvider
 
     override fun onCreate(savedInstanceState: Bundle?) {
         AndroidInjection.inject(this)
