@@ -1,5 +1,6 @@
 package com.androidhuman.example.simplegithub.ui.search
 
+import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
@@ -35,13 +36,18 @@ class SearchActivity : AppCompatActivity(), SearchAdapter.ItemClickListener {
 
     @Inject lateinit var adapter: SearchAdapter
 
-    @Inject lateinit var viewModel: SearchViewModel
+    @Inject lateinit var viewModelFactory: SearchViewModelFactory
+
+    lateinit var viewModel: SearchViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
         AndroidInjection.inject(this)
+
+        super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_search)
+
+        viewModel = ViewModelProviders.of(
+                this, viewModelFactory)[SearchViewModel::class.java]
 
         lifecycle += disposables
         lifecycle += viewDisposables

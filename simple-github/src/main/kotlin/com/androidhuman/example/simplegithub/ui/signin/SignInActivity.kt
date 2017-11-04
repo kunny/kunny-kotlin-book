@@ -1,5 +1,6 @@
 package com.androidhuman.example.simplegithub.ui.signin
 
+import android.arch.lifecycle.ViewModelProviders
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
@@ -27,13 +28,18 @@ class SignInActivity : AppCompatActivity() {
     internal val viewDisposables: AutoClearedDisposable
             = AutoClearedDisposable(lifecycleOwner = this, alwaysClearOnStop = false)
 
-    @Inject lateinit var viewModel: SignInViewModel
+    @Inject lateinit var viewModelFactory: SignInViewModelFactory
+
+    lateinit var viewModel: SignInViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
         AndroidInjection.inject(this)
+
+        super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_sign_in)
+
+        viewModel = ViewModelProviders.of(
+                this, viewModelFactory)[SignInViewModel::class.java]
 
         lifecycle += disposables
         lifecycle += viewDisposables

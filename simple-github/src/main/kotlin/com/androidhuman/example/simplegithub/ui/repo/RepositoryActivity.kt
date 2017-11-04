@@ -1,5 +1,6 @@
 package com.androidhuman.example.simplegithub.ui.repo
 
+import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.view.View
@@ -26,7 +27,9 @@ class RepositoryActivity : AppCompatActivity() {
     internal val viewDisposables
             = AutoClearedDisposable(lifecycleOwner = this, alwaysClearOnStop = false)
 
-    @Inject lateinit var viewModel: RepositoryViewModel
+    @Inject lateinit var viewModelFactory: RepositoryViewModelFactory
+
+    lateinit var viewModel: RepositoryViewModel
 
     internal val dateFormatInResponse = SimpleDateFormat(
             "yyyy-MM-dd'T'HH:mm:ssX", Locale.getDefault())
@@ -35,10 +38,13 @@ class RepositoryActivity : AppCompatActivity() {
             "yyyy-MM-dd HH:mm:ss", Locale.getDefault())
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
         AndroidInjection.inject(this)
+
+        super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_repository)
+
+        viewModel = ViewModelProviders.of(
+                this, viewModelFactory)[RepositoryViewModel::class.java]
 
         lifecycle += disposables
         lifecycle += viewDisposables
