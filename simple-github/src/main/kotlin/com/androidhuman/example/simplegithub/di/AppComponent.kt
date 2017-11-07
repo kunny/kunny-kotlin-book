@@ -6,6 +6,7 @@ import dagger.BindsInstance
 import dagger.Component
 import dagger.android.AndroidInjectionModule
 import dagger.android.AndroidInjector
+import dagger.android.support.AndroidSupportInjectionModule
 import javax.inject.Singleton
 
 @Singleton
@@ -14,7 +15,7 @@ import javax.inject.Singleton
                 AppModule::class,
                 LocalDataModule::class,
                 ApiModule::class, NetworkModule::class,
-                AndroidInjectionModule::class, ActivityBinder::class))
+                AndroidSupportInjectionModule::class, ActivityBinder::class))
 interface AppComponent : AndroidInjector<SimpleGithubApp> {
 
     @Component.Builder

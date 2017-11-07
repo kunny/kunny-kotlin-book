@@ -2,7 +2,6 @@ package com.androidhuman.example.simplegithub.ui.main
 
 import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
 import android.view.Menu
 import android.view.MenuItem
@@ -18,14 +17,14 @@ import com.androidhuman.example.simplegithub.ui.repo.KEY_USER_LOGIN
 import com.androidhuman.example.simplegithub.ui.repo.RepositoryActivity
 import com.androidhuman.example.simplegithub.ui.search.SearchActivity
 import com.androidhuman.example.simplegithub.ui.search.SearchAdapter
-import dagger.android.AndroidInjection
+import dagger.android.support.DaggerAppCompatActivity
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.activity_main.*
 import org.jetbrains.anko.startActivity
 import javax.inject.Inject
 
-class MainActivity : AppCompatActivity(), SearchAdapter.ItemClickListener {
+class MainActivity : DaggerAppCompatActivity(), SearchAdapter.ItemClickListener {
 
     internal val adapter by lazy {
         SearchAdapter().apply { setItemClickListener(this@MainActivity) }
@@ -44,8 +43,6 @@ class MainActivity : AppCompatActivity(), SearchAdapter.ItemClickListener {
     @Inject lateinit var searchHistoryDao: SearchHistoryDao
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        AndroidInjection.inject(this)
-
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 

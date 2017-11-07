@@ -2,14 +2,13 @@ package com.androidhuman.example.simplegithub.ui.repo
 
 import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
 import android.view.View
 import com.androidhuman.example.simplegithub.R
 import com.androidhuman.example.simplegithub.api.GithubApi
 import com.androidhuman.example.simplegithub.extensions.plusAssign
 import com.androidhuman.example.simplegithub.rx.AutoClearedDisposable
 import com.androidhuman.example.simplegithub.ui.GlideApp
-import dagger.android.AndroidInjection
+import dagger.android.support.DaggerAppCompatActivity
 import io.reactivex.android.schedulers.AndroidSchedulers
 import kotlinx.android.synthetic.main.activity_repository.*
 import java.text.ParseException
@@ -21,7 +20,7 @@ const val KEY_USER_LOGIN = "user_login"
 
 const val KEY_REPO_NAME = "repo_name"
 
-class RepositoryActivity : AppCompatActivity() {
+class RepositoryActivity : DaggerAppCompatActivity() {
 
     internal val disposables = AutoClearedDisposable(this)
 
@@ -43,8 +42,6 @@ class RepositoryActivity : AppCompatActivity() {
             "yyyy-MM-dd HH:mm:ss", Locale.getDefault())
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        AndroidInjection.inject(this)
-
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_repository)
 
