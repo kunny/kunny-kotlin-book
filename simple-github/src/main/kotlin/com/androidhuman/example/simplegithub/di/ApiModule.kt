@@ -17,6 +17,7 @@ import javax.inject.Singleton
 class ApiModule {
 
     @Provides
+    @Singleton
     fun provideAuthApi(
             @Named("unauthorized") okHttpClient: OkHttpClient,
             callAdapter: CallAdapter.Factory,
@@ -30,6 +31,7 @@ class ApiModule {
             .create(AuthApi::class.java)
 
     @Provides
+    @Singleton
     fun provideGithubApi(
             @Named("authorized") okHttpClient: OkHttpClient,
             callAdapter: CallAdapter.Factory,
