@@ -16,12 +16,14 @@ class LocalDataModule {
     // SharedPreferences
 
     @Provides
+    @Singleton
     fun provideAuthTokenProvider(@Named("appContext") context: Context): AuthTokenProvider
             = AuthTokenProvider(context)
-    
+
     // Room Database
 
     @Provides
+    @Singleton
     fun provideSearchHistoryDao(db: SimpleGithubDatabase): SearchHistoryDao
             = db.searchHistoryDao()
 
