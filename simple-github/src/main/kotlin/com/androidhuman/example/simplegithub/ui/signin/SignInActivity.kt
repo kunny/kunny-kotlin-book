@@ -24,9 +24,9 @@ import javax.inject.Inject
 
 class SignInActivity : DaggerAppCompatActivity() {
 
-    internal val disposables: AutoClearedDisposable = AutoClearedDisposable(this)
+    internal val disposables = AutoClearedDisposable(this)
 
-    internal val viewDisposables: AutoClearedDisposable
+    internal val viewDisposables
             = AutoClearedDisposable(lifecycleOwner = this, alwaysClearOnStop = false)
 
     internal val viewModelFactory by lazy {
