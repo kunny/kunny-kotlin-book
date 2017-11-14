@@ -45,7 +45,7 @@
 | [Dagger](https://google.github.io/dagger/) | [Apache License 2.0](https://github.com/google/dagger/blob/master/LICENSE.txt) | `2.12` |
 | [Glide](https://github.com/bumptech/glide) | [LICENSE](https://github.com/bumptech/glide/blob/master/LICENSE) | `4.1.1` |
 | [Gson](https://github.com/google/gson) | [Apache License 2.0](https://github.com/google/gson/blob/master/LICENSE) | `2.7` |
-| [Kotlin](https://github.com/JetBrains/kotlin) | [LICENSE](https://github.com/JetBrains/kotlin/tree/master/license) | `1.1.51` |
+| [Kotlin](https://github.com/JetBrains/kotlin) | [LICENSE](https://github.com/JetBrains/kotlin/tree/master/license) | `1.1.60` |
 | [OkHttp](http://square.github.io/okhttp/) | [Apache License 2.0](https://github.com/square/okhttp/blob/master/LICENSE.txt) | `3.8.1` |
 | [Retrofit](http://square.github.io/retrofit/) | [Apache License 2.0](https://github.com/square/retrofit/blob/master/LICENSE.txt) | `2.3.0` |
 | [RxAndroid](https://github.com/ReactiveX/RxAndroid) | [Apache License 2.0](https://github.com/ReactiveX/RxAndroid/blob/2.x/LICENSE) |  `2.0.1` |
