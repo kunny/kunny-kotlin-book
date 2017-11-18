@@ -13,8 +13,6 @@ import com.androidhuman.example.simplegithub.data.provideSearchHistoryDao
 import com.androidhuman.example.simplegithub.extensions.plusAssign
 import com.androidhuman.example.simplegithub.rx.AutoActivatedDisposable
 import com.androidhuman.example.simplegithub.rx.AutoClearedDisposable
-import com.androidhuman.example.simplegithub.ui.repo.KEY_REPO_NAME
-import com.androidhuman.example.simplegithub.ui.repo.KEY_USER_LOGIN
 import com.androidhuman.example.simplegithub.ui.repo.RepositoryActivity
 import com.androidhuman.example.simplegithub.ui.search.SearchActivity
 import com.androidhuman.example.simplegithub.ui.search.SearchAdapter
@@ -99,8 +97,8 @@ class MainActivity : AppCompatActivity(), SearchAdapter.ItemClickListener {
 
     override fun onItemClick(repository: GithubRepo) {
         startActivity<RepositoryActivity>(
-                KEY_USER_LOGIN to repository.owner.login,
-                KEY_REPO_NAME to repository.name)
+                RepositoryActivity.KEY_USER_LOGIN to repository.owner.login,
+                RepositoryActivity.KEY_REPO_NAME to repository.name)
     }
 
     private fun showMessage(message: String) {
