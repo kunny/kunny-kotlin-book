@@ -15,11 +15,14 @@ import java.text.SimpleDateFormat
 import java.util.Locale
 import javax.inject.Inject
 
-const val KEY_USER_LOGIN = "user_login"
-
-const val KEY_REPO_NAME = "repo_name"
-
 class RepositoryActivity : DaggerAppCompatActivity() {
+
+    companion object {
+
+        const val KEY_USER_LOGIN = "user_login"
+
+        const val KEY_REPO_NAME = "repo_name"
+    }
 
     internal val disposables = AutoClearedDisposable(this)
 
