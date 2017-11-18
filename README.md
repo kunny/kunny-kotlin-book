@@ -11,7 +11,7 @@
 
 각 장에서 완성하게 되는 코드는 주제별로 구분되어 있는 브랜치로 확인할 수 있습니다.
 
-각 브랜치는 바로 직전의 브랜치를 기반으로 작성됩니다. (예: ``arch-components-lifecycle`` 브랜치에는 직전 브랜치인 ``rxjava-rxbinding``을 기반으로 구현되었으므로, ``RxJava`` 및 ``RxBinding``이 모두 적용되어 있는 상태입니다)
+각 브랜치는 직전의 브랜치를 기반으로 작성됩니다. (예: ``arch-components-lifecycle`` 브랜치에는 직전 브랜치인 ``rxjava-rxbinding``을 기반으로 구현되었으므로, ``RxJava`` 와 ``RxBinding``이 모두 적용되어 있는 상태입니다)
 
 | 브랜치 | 언어 |  장 | 제목 | 책에서 다루는 내용 |
 | --- | -- | --- | --- | --- |
@@ -46,6 +46,7 @@
 | --- | --- | --- |
 | [Anko](https://github.com/Kotlin/anko) | [Apache License 2.0](https://github.com/Kotlin/anko/blob/master/LICENSE) | `0.10.2` |
 | [Android Architecture Components](https://developer.android.com/topic/libraries/architecture/index.html) | Apache License 2.0 | `1.0.0` |
+| [Android Support Library](https://developer.android.com/topic/libraries/support-library/index.html) | Apache License 2.0  | `27.0.1` |
 | [Dagger](https://google.github.io/dagger/) | [Apache License 2.0](https://github.com/google/dagger/blob/master/LICENSE.txt) | `2.12` |
 | [Glide](https://github.com/bumptech/glide) | [LICENSE](https://github.com/bumptech/glide/blob/master/LICENSE) | `4.1.1` |
 | [Gson](https://github.com/google/gson) | [Apache License 2.0](https://github.com/google/gson/blob/master/LICENSE) | `2.7` |
@@ -55,7 +56,6 @@
 | [RxAndroid](https://github.com/ReactiveX/RxAndroid) | [Apache License 2.0](https://github.com/ReactiveX/RxAndroid/blob/2.x/LICENSE) |  `2.0.1` |
 | [RxBinding](https://github.com/JakeWharton/RxBinding) | [Apache License 2.0](https://github.com/JakeWharton/RxBinding/blob/master/LICENSE.txt) | `2.0.0` |
 | [RxJava](https://github.com/ReactiveX/RxJava) | [Apache License 2.0](https://github.com/ReactiveX/RxJava/blob/2.x/LICENSE) | `2.1.3` |
-| [Android Support Library](https://developer.android.com/topic/libraries/support-library/index.html) | Apache License 2.0  | `27.0.1` |
 
 ## 라이선스
 
