@@ -15,11 +15,14 @@ import java.text.ParseException
 import java.text.SimpleDateFormat
 import java.util.Locale
 
-const val KEY_USER_LOGIN = "user_login"
-
-const val KEY_REPO_NAME = "repo_name"
-
 class RepositoryActivity : AppCompatActivity() {
+
+    companion object {
+
+        const val KEY_USER_LOGIN = "user_login"
+
+        const val KEY_REPO_NAME = "repo_name"
+    }
 
     internal val api by lazy { provideGithubApi(this) }
 

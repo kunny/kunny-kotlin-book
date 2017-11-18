@@ -13,8 +13,6 @@ import com.androidhuman.example.simplegithub.api.GithubApi
 import com.androidhuman.example.simplegithub.api.model.GithubRepo
 import com.androidhuman.example.simplegithub.api.model.RepoSearchResponse
 import com.androidhuman.example.simplegithub.api.provideGithubApi
-import com.androidhuman.example.simplegithub.ui.repo.KEY_REPO_NAME
-import com.androidhuman.example.simplegithub.ui.repo.KEY_USER_LOGIN
 import com.androidhuman.example.simplegithub.ui.repo.RepositoryActivity
 import kotlinx.android.synthetic.main.activity_search.*
 import org.jetbrains.anko.startActivity
@@ -86,8 +84,8 @@ class SearchActivity : AppCompatActivity(), SearchAdapter.ItemClickListener {
 
     override fun onItemClick(repository: GithubRepo) {
         startActivity<RepositoryActivity>(
-                KEY_USER_LOGIN to repository.owner.login,
-                KEY_REPO_NAME to repository.name)
+                RepositoryActivity.KEY_USER_LOGIN to repository.owner.login,
+                RepositoryActivity.KEY_REPO_NAME to repository.name)
     }
 
     private fun searchRepository(query: String) {
