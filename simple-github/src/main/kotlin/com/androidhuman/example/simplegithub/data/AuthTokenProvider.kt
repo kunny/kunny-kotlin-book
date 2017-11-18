@@ -3,9 +3,12 @@ package com.androidhuman.example.simplegithub.data
 import android.content.Context
 import android.preference.PreferenceManager
 
-private const val KEY_AUTH_TOKEN = "auth_token"
-
 class AuthTokenProvider(private val context: Context) {
+
+    companion object {
+
+        private const val KEY_AUTH_TOKEN = "auth_token"
+    }
 
     fun updateToken(token: String) {
         PreferenceManager.getDefaultSharedPreferences(context).edit()
