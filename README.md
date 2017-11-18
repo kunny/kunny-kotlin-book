@@ -33,7 +33,7 @@
 | 항목 | 버전 |
 | --- | --- |
 | Android Gradle Plugin | `3.0.0` |
-| Build Tools | `27.0.0` |
+| Build Tools | `27.0.1` |
 | Minimum SDK | `15` |
 | Compile SDK | `27` |
 | Target SDK | `27` |
@@ -55,7 +55,7 @@
 | [RxAndroid](https://github.com/ReactiveX/RxAndroid) | [Apache License 2.0](https://github.com/ReactiveX/RxAndroid/blob/2.x/LICENSE) |  `2.0.1` |
 | [RxBinding](https://github.com/JakeWharton/RxBinding) | [Apache License 2.0](https://github.com/JakeWharton/RxBinding/blob/master/LICENSE.txt) | `2.0.0` |
 | [RxJava](https://github.com/ReactiveX/RxJava) | [Apache License 2.0](https://github.com/ReactiveX/RxJava/blob/2.x/LICENSE) | `2.1.3` |
-| [Android Support Library](https://developer.android.com/topic/libraries/support-library/index.html) | Apache License 2.0  | `27.0.0` |
+| [Android Support Library](https://developer.android.com/topic/libraries/support-library/index.html) | Apache License 2.0  | `27.0.1` |
 
 ## 라이선스
 
