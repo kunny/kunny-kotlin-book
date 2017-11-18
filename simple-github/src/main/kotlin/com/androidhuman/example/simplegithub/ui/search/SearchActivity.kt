@@ -14,8 +14,6 @@ import com.androidhuman.example.simplegithub.api.model.GithubRepo
 import com.androidhuman.example.simplegithub.data.SearchHistoryDao
 import com.androidhuman.example.simplegithub.extensions.plusAssign
 import com.androidhuman.example.simplegithub.rx.AutoClearedDisposable
-import com.androidhuman.example.simplegithub.ui.repo.KEY_REPO_NAME
-import com.androidhuman.example.simplegithub.ui.repo.KEY_USER_LOGIN
 import com.androidhuman.example.simplegithub.ui.repo.RepositoryActivity
 import com.jakewharton.rxbinding2.support.v7.widget.queryTextChangeEvents
 import dagger.android.support.DaggerAppCompatActivity
@@ -141,8 +139,8 @@ class SearchActivity : DaggerAppCompatActivity(), SearchAdapter.ItemClickListene
     override fun onItemClick(repository: GithubRepo) {
         disposables += viewModel.addToSearchHistory(repository)
         startActivity<RepositoryActivity>(
-                KEY_USER_LOGIN to repository.owner.login,
-                KEY_REPO_NAME to repository.name)
+                RepositoryActivity.KEY_USER_LOGIN to repository.owner.login,
+                RepositoryActivity.KEY_REPO_NAME to repository.name)
     }
 
     private fun searchRepository(query: String) {
