@@ -49,3 +49,7 @@ dependencies {
 
     kapt "com.github.bumptech.glide:compiler:$glideVersion"
 }
+
+androidExtensions {
+    experimental = true
+}

@@ -5,11 +5,13 @@ import android.graphics.drawable.ColorDrawable
 import android.support.v7.widget.RecyclerView
 import android.text.TextUtils
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import com.androidhuman.example.simplegithub.R
 import com.androidhuman.example.simplegithub.api.model.GithubRepo
 import com.androidhuman.example.simplegithub.ui.GlideApp
-import kotlinx.android.synthetic.main.item_repository.view.*
+import kotlinx.android.extensions.LayoutContainer
+import kotlinx.android.synthetic.main.item_repository.*
 
 class SearchAdapter : RecyclerView.Adapter<SearchAdapter.RepositoryHolder>() {
 
@@ -24,19 +26,20 @@ class SearchAdapter : RecyclerView.Adapter<SearchAdapter.RepositoryHolder>() {
 
     override fun onBindViewHolder(holder: RepositoryHolder, position: Int) {
         items[position].let { repo ->
-            with(holder.itemView) {
-                GlideApp.with(context)
+
+            with(holder) {
+                GlideApp.with(holder.itemView.context)
                         .load(repo.owner.avatarUrl)
                         .placeholder(placeholder)
                         .into(ivItemRepositoryProfile)
 
                 tvItemRepositoryName.text = repo.fullName
                 tvItemRepositoryLanguage.text = if (TextUtils.isEmpty(repo.language))
-                    context.getText(R.string.no_language_specified)
+                    containerView.context.getText(R.string.no_language_specified)
                 else
                     repo.language
 
-                setOnClickListener { listener?.onItemClick(repo) }
+                containerView.setOnClickListener { listener?.onItemClick(repo) }
             }
         }
     }
@@ -55,9 +58,12 @@ class SearchAdapter : RecyclerView.Adapter<SearchAdapter.RepositoryHolder>() {
         this.items.clear()
     }
 
-    class RepositoryHolder(parent: ViewGroup) : RecyclerView.ViewHolder(
+    class RepositoryHolder(parent: ViewGroup) : AndroidExtensionsViewHolder(
             LayoutInflater.from(parent.context)
                     .inflate(R.layout.item_repository, parent, false))
+
+    abstract class AndroidExtensionsViewHolder(override val containerView: View)
+        : RecyclerView.ViewHolder(containerView), LayoutContainer
 
     interface ItemClickListener {
 
