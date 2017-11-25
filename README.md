@@ -45,7 +45,7 @@
 
 | 항목 | 버전 |
 | --- | --- |
-| Android Gradle Plugin | `3.0.0` |
+| Android Gradle Plugin | `3.0.1` |
 | Build Tools | `27.0.1` |
 | Minimum SDK | `15` |
 | Compile SDK | `27` |
@@ -57,7 +57,7 @@
 
 | 이름 | 라이선스 | 버전 |
 | --- | --- | --- |
-| [Anko](https://github.com/Kotlin/anko) | [Apache License 2.0](https://github.com/Kotlin/anko/blob/master/LICENSE) | `0.10.2` |
+| [Anko](https://github.com/Kotlin/anko) | [Apache License 2.0](https://github.com/Kotlin/anko/blob/master/LICENSE) | `0.10.3` |
 | [Android Architecture Components](https://developer.android.com/topic/libraries/architecture/index.html) | Apache License 2.0 | `1.0.0` |
 | [Android Support Library](https://developer.android.com/topic/libraries/support-library/index.html) | Apache License 2.0  | `27.0.1` |
 | [Dagger](https://google.github.io/dagger/) | [Apache License 2.0](https://github.com/google/dagger/blob/master/LICENSE.txt) | `2.12` |
