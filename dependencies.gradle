@@ -6,7 +6,7 @@ ext {
     targetSdkVersion = 27
 
     // Gradle plugin
-    androidPluginVersion = '3.0.0'
+    androidPluginVersion = '3.0.1'
 
     // Library
     glideVersion = '4.1.1'
