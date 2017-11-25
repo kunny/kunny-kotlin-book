@@ -9,7 +9,7 @@ ext {
     androidPluginVersion = '3.0.1'
 
     // Library
-    ankoVersion = '0.10.2'
+    ankoVersion = '0.10.3'
     archComponentVersion = '1.0.0'
     glideVersion = '4.1.1'
     gsonVersion = '2.7'
