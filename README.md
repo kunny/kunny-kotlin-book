@@ -20,6 +20,12 @@
 
 오류 수정 혹은 업데이트로 인해 코드가 변경될 수 있습니다. 전체 변경 내역은 [CHANGELOG](https://github.com/kunny/kunny-kotlin-book/tree/master/CHANGELOG.md) 문서를 참조하세요.
 
+## 추가 학습 자료
+
+책에는 포함되어 있지 않지만, 추가로 학습하길 권장하는 자료를 나열합니다.
+
+* [Kotlin Android Extensions - 리사이클러의 뷰홀더에서 올바르게 사용하는 방법](http://kunny.github.io/lecture/kotlin/2017/11/26/kotlin_android_extensions_on_viewholder/)
+
 ## 예제 목록
 
 각 장에서 완성하게 되는 코드는 주제별로 구분되어 있는 브랜치로 확인할 수 있습니다.
@@ -63,7 +69,7 @@
 | [Dagger](https://google.github.io/dagger/) | [Apache License 2.0](https://github.com/google/dagger/blob/master/LICENSE.txt) | `2.12` |
 | [Glide](https://github.com/bumptech/glide) | [LICENSE](https://github.com/bumptech/glide/blob/master/LICENSE) | `4.1.1` |
 | [Gson](https://github.com/google/gson) | [Apache License 2.0](https://github.com/google/gson/blob/master/LICENSE) | `2.7` |
-| [Kotlin](https://github.com/JetBrains/kotlin) | [LICENSE](https://github.com/JetBrains/kotlin/tree/master/license) | `1.1.60` |
+| [Kotlin](https://github.com/JetBrains/kotlin) | [LICENSE](https://github.com/JetBrains/kotlin/tree/master/license) | `1.2.0` |
 | [OkHttp](http://square.github.io/okhttp/) | [Apache License 2.0](https://github.com/square/okhttp/blob/master/LICENSE.txt) | `3.8.1` |
 | [Retrofit](http://square.github.io/retrofit/) | [Apache License 2.0](https://github.com/square/retrofit/blob/master/LICENSE.txt) | `2.3.0` |
 | [RxAndroid](https://github.com/ReactiveX/RxAndroid) | [Apache License 2.0](https://github.com/ReactiveX/RxAndroid/blob/2.x/LICENSE) |  `2.0.1` |
