@@ -14,7 +14,7 @@ ext {
     daggerVersion = '2.12'
     glideVersion = '4.1.1'
     gsonVersion = '2.7'
-    kotlinVersion = '1.1.60'
+    kotlinVersion = '1.2.0'
     okHttpVersion = '3.8.1'
     retrofitVersion = '2.3.0'
     rxAndroidVersion = '2.0.1'
