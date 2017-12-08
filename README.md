@@ -52,7 +52,7 @@
 | 항목 | 버전 |
 | --- | --- |
 | Android Gradle Plugin | `3.0.1` |
-| Build Tools | `27.0.1` |
+| Build Tools | `27.0.2` |
 | Minimum SDK | `15` |
 | Compile SDK | `27` |
 | Target SDK | `27` |
@@ -65,7 +65,7 @@
 | --- | --- | --- |
 | [Anko](https://github.com/Kotlin/anko) | [Apache License 2.0](https://github.com/Kotlin/anko/blob/master/LICENSE) | `0.10.3` |
 | [Android Architecture Components](https://developer.android.com/topic/libraries/architecture/index.html) | Apache License 2.0 | `1.0.0` |
-| [Android Support Library](https://developer.android.com/topic/libraries/support-library/index.html) | Apache License 2.0  | `27.0.1` |
+| [Android Support Library](https://developer.android.com/topic/libraries/support-library/index.html) | Apache License 2.0  | `27.0.2` |
 | [Dagger](https://google.github.io/dagger/) | [Apache License 2.0](https://github.com/google/dagger/blob/master/LICENSE.txt) | `2.12` |
 | [Glide](https://github.com/bumptech/glide) | [LICENSE](https://github.com/bumptech/glide/blob/master/LICENSE) | `4.1.1` |
 | [Gson](https://github.com/google/gson) | [Apache License 2.0](https://github.com/google/gson/blob/master/LICENSE) | `2.7` |
@@ -79,7 +79,7 @@
 ## 지원
 
 * [커니의 코틀린 페이스북 페이지](https://goo.gl/B7CaU4) - '커니의 코틀린' 도서 및 코틀린과 관련된 소식을 제공합니다.
-* [커니의 코틀린 페이스북 그룹](https://goo.gl/Sj5wRd) - 책을 보다가 궁금한 사항이 있는 경우  질문을 올려주세요!
+* [커니의 코틀린 페이스북 그룹](https://goo.gl/Sj5wRd) - 책을 보다가 궁금한 사항이 있는 경우 질문을 올려주세요!
 
 ## 라이선스
 
