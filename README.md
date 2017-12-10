@@ -7,7 +7,7 @@
 
 [교보문고](https://goo.gl/AczLBC) | [YES24](https://goo.gl/ZN82zG) | [알라딘](https://goo.gl/TybL2u) | [인터파크](https://goo.gl/YHGFbt)
 
-![Cover](assets/kunny_kotlin_book-cover_small.png)
+![Cover](assets/kunny_kotlin_book-cover_3d.jpg)
 
 >실무에서 쓰는 라이브러리를 활용하여 프로젝트를 개선하는 법까지 한번에!
 자바와 비교해 직관적으로 문법을 익힌 후 코틀린다운 코드를 만드는 노하우를 얻는다!
